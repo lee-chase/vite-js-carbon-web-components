@@ -16,6 +16,7 @@
   "dependencies": {
     "@carbon/icons": "^11.49.0",
     "@carbon/styles": "^1.65.0",
-    "@carbon/web-components": "^2.13.0"
+    "@carbon/web-components": "^2.13.0",
+    "lit": "^3.2.0"
   }
 }
