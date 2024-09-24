@@ -1,23 +1,5 @@
 @use '@carbon/styles/scss/reset';
-@use '@carbon/styles/scss/theme' as *;
-@use '@carbon/styles/scss/themes';
 
-.app {
-  display: grid;
-  grid-template-rows: 3rem 1fr;
-  height: 100vh;
+body {
   overflow: hidden;
-}
-
-.g10 {
-  @include theme(themes.$g10);
-  background-color: $background;
-  color: $text-primary;
-}
-
-.g100 {
-  @include theme(themes.$g100);
-
-  background-color: $background;
-  color: $text-primary;
 }
