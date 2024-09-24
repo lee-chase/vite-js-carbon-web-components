@@ -278,7 +278,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       <tutorial-header class="g100"></tutorial-header>
       ```
 
-   6. `class="g100"` class can be removed from `./components/tutorial-header.js`. 7. If you ar running the app it should still be working correctly.
+   6. `class="g100"` class can be removed from `./components/tutorial-header.js`.
+   7. If you ar running the app it should still be working correctly.
 
 3. Still in `tutorial-header.js` we can refactor to reduce repetition and simplify.
 
