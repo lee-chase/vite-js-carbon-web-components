@@ -3,37 +3,16 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/carbon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
-  <script type="module" src="/main.js"></script>
+  <title>Carbon Tutorial</title>
+  <meta name="description" content="Carbon Tutorial using Web Components">
+  <script type="module" src="/main.js">
+  </script>
 </head>
 
-<body class="app g10">
-  <header>
-    <cds-header class="g100">
-      <cds-header-name href="/" prefix="IBM">Carbon Tutorial</cds-header-name>
-      <cds-header-nav menu-bar-label="Carbon Tutorial">
-        <cds-header-nav-item href="./repositories.html">Repositories</cds-header-nav-item>
-      </cds-header-nav>
-      <div class="cds--header__global">
-        <cds-header-global-action aria-label="Notifications" className="action-icons">
-          <my-icon slot="icon" icon="Notification20" />
-        </cds-header-global-action>
-        <cds-header-global-action aria-label="User Avatar" className="action-icons">
-          <my-icon slot="icon" icon="UserAvatar20" />
-        </cds-header-global-action>
-        <cds-header-global-action aria-label="App Switcher">
-          <my-icon slot="icon" icon="Switcher20" />
-        </cds-header-global-action>
-      </div>
-    </cds-header>
-  </header>
-
-  <main class="main">
-    <cds-button class="button">Button</cds-button>
-    <my-count class="count" count="3"></my-count>
-  </main>
+<body>
+  <tutorial-app></tutorial-app>
 </body>
 
 </html>
