@@ -354,8 +354,7 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       ```HTML
       <main class="main--landing">
         <cds-button class="button" @click="${this.increment}"
-          >Button <add-20-svg slot="icon"
-        /></cds-button>
+          >Button</cds-button>
         <my-count class="count" count="3"></my-count>
         <div>LANDING PAGE component</div>
       </main>
