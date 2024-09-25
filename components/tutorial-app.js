@@ -9,13 +9,13 @@ export class TutorialApp extends LitElement {
     switch (path) {
       case '/repositories.html':
       case '/repositories':
-        main = html`<main-repositories></main-repositories>`;
+        main = html`<page-repositories></page-repositories>`;
         break;
       default:
         if (path !== '/') {
           window.history.replaceState({}, '', '/');
         }
-        main = html`<main-landing></main-landing>`;
+        main = html`<page-landing></page-landing>`;
         break;
     }
 

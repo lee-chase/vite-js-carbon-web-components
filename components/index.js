@@ -1,6 +1,6 @@
 import './my-count';
 import './my-icon';
 import './tutorial-header';
-import './main-landing';
-import './main-repositories';
+import './page-landing';
+import './page-repositories';
 import './tutorial-app';
