@@ -8,9 +8,7 @@ export class MainLanding extends LitElement {
 
   render() {
     return html`<main class="main--landing">
-      <cds-button class="button" @click="${this.increment}"
-        >Button <add-20-svg slot="icon"
-      /></cds-button>
+      <cds-button class="button" @click="${this.increment}">Button</cds-button>
       <my-count class="count" count="3"></my-count>
       <div>LANDING PAGE component</div>
     </main>`;
