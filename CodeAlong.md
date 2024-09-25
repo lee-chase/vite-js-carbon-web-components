@@ -4,6 +4,8 @@ This document will grow and document what we did along the way.
 
 ## Step 1
 
+Starting from a base Create Next App, let’s install Carbon and begin using Carbon components. By the end you will have a Next.js app that uses the UI Shell to navigate between pages.
+
 1.  Check it runs
     1. pnpm dev
     2. Stop it.
@@ -314,50 +316,50 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
    4. This small refactor, while not necessary does serve to show that Lit can be used to construct HTML from data. It also removes he current need for the `my-icon` component, but we'll keep it for reference and possible use later.
 
-4. Creating and using `main-landing` and `main-repositories` components.
+4. Creating and using `page-landing` and `page-repositories` components.
 
-   1. Create the files `./components/main-landing.js` and `./components/main-repositories.js`
+   1. Create the files `./components/page-landing.js` and `./components/page-repositories.js`
    2. Using the code snippet or by copying the following add the shell of a component to each.
 
       ```js
-      // main-landing.js
+      // page-landing.js
       import { LitElement, html } from 'lit';
 
-      export class MainLanding extends LitElement {
+      export class PageLanding extends LitElement {
         render() {
           return html``;
         }
       }
-      customElements.define('main-landing', MainLanding);
+      customElements.define('page-landing', PageLanding);
       ```
 
       ```js
-      // main-repositories.js
+      // page-repositories.js
       import { LitElement, html } from 'lit';
 
-      export class MainRepositories extends LitElement {
+      export class PageRepositories extends LitElement {
         render() {
           return html``;
         }
       }
-      customElements.define('main-repositories', MainRepositories);
+      customElements.define('page-repositories', PageRepositories);
       ```
 
-   3. In `./components/main-repositories.js` simply add the following in the template literal
+   3. In `./components/page-repositories.js` simply add the following in the template literal
 
       ```html
-      <div class="main--repositories">REPOSITORIES PAGE component</div>
+      <div class="page--repositories">REPOSITORIES PAGE component</div>
       ```
 
-   4. In `./components/main-landing.js` we first need to update the contents of the template literal to.
+   4. In `./components/page-landing.js` we first need to update the contents of the template literal to.
 
       ```HTML
-      <main class="main--landing">
+      <div class="page--landing">
         <cds-button class="button" @click="${this.increment}"
           >Button</cds-button>
         <my-count class="count" count="3"></my-count>
         <div>LANDING PAGE component</div>
-      </main>
+      </div>
       ```
 
    5. Then add the increment function.
@@ -374,7 +376,7 @@ Rather than import one of these packages, let's continue and refactor using `Lit
    8. In `index.html` replace the contents of `<main>` with
 
       ```html
-      <main-landing></main-landing>
+      <page-landing></page-landing>
       ```
 
    9. Now our App is sort of working but the Repositories page is not correct. This is most obvious if we now delete `repositories.html`.
@@ -413,8 +415,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
           <tutorial-header class="g100"></tutorial-header>
         </header>
 
-        <main class="main">
-          <main-landing></main-landing>
+        <main>
+          <page-landing></page-landing>
         </main>
       </div>
       ```
@@ -474,32 +476,32 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
    6. Finally we need to fix our routing.
 
-      1. Inside the render function of `tutorial-app.js` add the following to read the path and select the appropriate main.
+      1. Inside the render function of `tutorial-app.js` add the following to read the path and select the appropriate main content.
 
          ```js
          const path = window.location.pathname;
-         let main;
+         let page;
 
          switch (path) {
            case '/repositories.html':
            case '/repositories':
-             main = html`<main-repositories></main-repositories>`;
+             page = html`<page-repositories></page-repositories>`;
              break;
            default:
              if (path !== '/') {
                window.history.replaceState({}, '', '/');
              }
-             main = html`<main-landing></main-landing>`;
+             page = html`<page-landing></page-landing>`;
              break;
          }
          ```
 
-      2. Then replace `<main-landing></main-landing>` in the template literal with `${main}`.
+      2. Then replace `<page-landing></page-landing>` in the template literal with `${page}`.
       3. Note that in `tutorial-header.js` we can now replace `repositories.html` with `repositories` making our URL a little neater.
 
 7. Hopefully at this point you have a working application that looks something like this.
-   ![Application landing page](./CodeAlongImages/AppLandingPage.png)
-   ![Application repositories page](./CodeAlongImages/AppRepositoriesPage.png)
+   ![Application landing page](./CodeAlongImages/AppPageLanding.png)
+   ![Application repositories page](./CodeAlongImages/AppPageRepositories.png)
 8. You might also notice that our header no longer flickers when we change pages.
 9. Before we go, one last task in `index.html`
    1. Replace `Vite App` with `Carbon Tutorial`
