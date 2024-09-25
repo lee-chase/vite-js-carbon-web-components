@@ -24,7 +24,7 @@ export class TutorialApp extends LitElement {
         <tutorial-header class="g100"></tutorial-header>
       </header>
 
-      <main class="main">${main}</main>
+      <main>${main}</main>
     </div>`;
   }
 
