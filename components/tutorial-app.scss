@@ -1,11 +1,19 @@
 @use '@carbon/styles/scss/theme' as *;
 @use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/grid';
 
 :host(tutorial-app) {
+  @include grid.css-grid();
+
   .app {
     display: grid;
     grid-template-rows: 3rem 1fr;
     height: 100vh;
+    overflow: hidden;
+  }
+
+  .app__main {
+    height: 100%;
     overflow: hidden;
   }
 
