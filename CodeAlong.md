@@ -500,11 +500,347 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       3. Note that in `tutorial-header.js` we can now replace `repositories.html` with `repositories` making our URL a little neater.
 
 7. Hopefully at this point you have a working application that looks something like this.
-   ![Application landing page](./CodeAlongImages/AppPageLanding.png)
-   ![Application repositories page](./CodeAlongImages/AppPageRepositories.png)
+   ![Application landing page](./codealong-md-images/AppPageLanding.png)
+   ![Application repositories page](./codealong-md-images/AppPageRepositories.png)
 8. You might also notice that our header no longer flickers when we change pages.
 9. Before we go, one last task in `index.html`
    1. Replace `Vite App` with `Carbon Tutorial`
    2. Add `<meta name="description" content="Carbon Tutorial using Web Components">`
    3. Replace `vite.svg` with `carbon.svg`
 10. All looks good? Save your work and switch to the branch `step-2`.
+
+## Step 2
+
+Now that we have our app using the UI Shell, it’s time to build a few static pages. In this step, we’ll become comfortable with the Carbon grid and various Carbon components.
+
+1. Add a sample grid
+
+   1. In `./components/page-landing.js` paste in this example grid usage.
+
+      ```html
+      <div class="${gridClasses({ class: 'page--landing', fullWidth: true })}">
+        <div
+          class="${colClasses({ class: 'page--landing__banner', sizes: { sm: 4, md: 8, lg:  16 } } ) }"
+        >
+          1
+        </div>
+        <div
+          class="${colClasses({ class: 'page--landing__r2', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
+        >
+          <div class="${gridClasses({ sub: true, wide: true } ) }">
+            <div
+              class="${colClasses({ class: 'page--landing__tab-content', sizes: { sm: 4, md: 4, lg: 7 } } ) }"
+            >
+              7/16
+            </div>
+            <div class="${colClasses({ sizes: { sm:4, md: 4, lg: 7 } } ) }">
+              8/16
+            </div>
+          </div>
+        </div>
+        <div
+          class="${colClasses({ class: 'page--landing__r3', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
+        >
+          <div class="${gridClasses({ sub: true, wide: true })}">
+            <div
+              class="${colClasses({ class: 'page--landing__label', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+            >
+              1/4
+            </div>
+            <div
+              class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+            >
+              1/4
+            </div>
+            <div
+              class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+            >
+              1/4
+            </div>
+            <div
+              class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+            >
+              1/4
+            </div>
+          </div>
+        </div>
+      </div>
+      ```
+
+   2. The eagle eyed amongst you will notice that this is not using Carbon Web Components. While feature parity in Carbon Web Components is improving all the time, there are some features not yet available.
+   3. Then import for the utility functions `colClasses` and `gridClasses`.
+
+      ```js
+      import { colClasses, gridClasses } from '../utils/grid';
+      ```
+
+   4. The page should now run but is missing the required grid styling. Create `./components/page-landing.scss` and paste the following into it.
+
+      ```scss
+      @use '@carbon/styles/scss/grid';
+
+      :host(page-landing) {
+        @include grid.css-grid();
+
+        .cds--css-grid {
+          padding-left: 20px;
+          padding-right: 20px;
+          box-sizing: border-box;
+        }
+      }
+      ```
+
+   5. Import the style file into `./components/page-landing.js` and add the styles just before the end of the class as before.
+
+      ```js
+      import styles from './page-landing.scss';
+      ```
+
+      ```js
+        static get styles() {
+          return [unsafeCSS(styles)];
+        }
+      ```
+
+   6. Your landing page should now look something like this.
+
+   ![Application with an example grid](codealong-md-images/example-grid.png)
+
+2. Adding the tutorial grid content.
+
+   1. First in `main.js` add the following imports which we will be using in this section.
+
+      ```js
+      import '@carbon/web-components/es/components/breadcrumb/index';
+      import '@carbon/web-components/es/components/tabs/index';
+      ```
+
+   2. Inside the first column element `class: 'page--landing__banner'` add the following breadcrumb and heading.
+
+      ```html
+      <cds-breadcrumb noTrailingSlash aria-label="Page navigation">
+        <cds-breadcrumb-item>
+          <a href="/">Getting started</a>
+        </cds-breadcrumb-item>
+      </cds-breadcrumb>
+      <h1 class="page--landing__heading">Design &amp; build with Carbon</h1>
+      ```
+
+   3. In the second column element `class: 'page--landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
+
+      ```html
+      <cds-tabs value="about">
+        <cds-tab id="tab-about" value="about" target="panel-about"
+          >About</cds-tab
+        >
+        <cds-tab id="tab-design" value="design" target="panel-design"
+          >Design</cds-tab
+        >
+        <cds-tab id="tab-develop" value="develop" target="panel-develop"
+          >Develop</cds-tab
+        >
+      </cds-tabs>
+      ```
+
+   4. Next up we need to define the tab panel contents in `./components/page-landing.js`.
+
+      1. First wrap the grid element immediately after `</cds-tabs>` with our tab panel.
+
+         ```html
+         <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+           ... grid element is here
+         </div>
+         ```
+
+      2. Then replace the contents of the contained columns with.
+
+         ```html
+         <h3 class="page--landing__subheading">What is Carbon?</h3>
+         <p class="page--landing__p">
+           Carbon is IBM’s open-source design system for digital products and
+           experiences. With the IBM Design Language as its foundation, the
+           system consists of working code, design tools and resources, human
+           interface guidelines, and a vibrant community of contributors.
+         </p>
+         <cds-button>Learn more</cds-button>
+         ```
+
+      3. And
+
+         ```html
+         <img
+           class="page--landing__illo"
+           src="./tab-illo.png"
+           alt="Carbon illustration"
+           width="640"
+           height="498"
+         />
+         ```
+
+      4. After the first tab panel we need to add two further panels `Design`.
+
+         ```html
+         <div id="panel-design" role="tabpanel" aria-labelledby="tab-design">
+           <div
+             class="${gridClasses({
+               sub: true,
+               wide: true,
+             })}"
+           >
+             <div
+               class="${colClasses({
+                 class: 'page--landing__tab-content',
+                 sizes: { sm: 4, md: 8, lg: 16 },
+               })}"
+             >
+               <p class="page--landing__p">
+                 Rapidly build beautiful and accessible experiences. The Carbon
+                 kit contains all resources you need to get started.
+               </p>
+             </div>
+           </div>
+         </div>
+         ```
+
+      5. And `Develop`
+
+         ```html
+         <div id="panel-develop" role="tabpanel" aria-labelledby="tab-develop">
+           <div
+             class="${gridClasses({
+              sub: true,
+              wide: true,
+            })}"
+           >
+             <div
+               class="${colClasses({
+                class: 'page--landing__tab-content',
+                sizes: { sm: 4, md: 8, lg: 16 },
+              })}"
+             >
+               <p class="page--landing__p">
+                 Carbon provides styles and components in Vanilla, React,
+                 Angular, and Vue for anyone building on the web.
+               </p>
+             </div>
+           </div>
+         </div>
+         ```
+
+   5. At this point we have something functional, but in need of a little styling. Head to `./contents/page-landing.scss`.
+
+      1. Tidy up by adding Carbon theme and spacing imports.
+
+         ```scss
+         @use '@carbon/styles/scss/spacing' as *;
+         @use '@carbon/styles/scss/theme' as *;
+         @use '@carbon/styles/scss/type' as *;
+         ```
+
+      2. Then change `20px` in `.cds--css-grid` to `$spacing-06` (24px).
+      3. To style the content of the banner add this inside the `:host(page-heading)`
+
+      ```scss
+      .page--landing {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .page--landing__banner {
+        margin: 0 -1 * $spacing-06;
+        padding: $spacing-05 $spacing-06 $spacing-07 * 4;
+        background: $layer-01;
+      }
+
+      .page--landing__heading {
+        @include type-style('productive-heading-05');
+
+        margin: 0;
+      }
+      ```
+
+      4. Style the tabs and content in the same place with
+
+         ```scss
+         .page--landing__illo {
+           max-width: 100%;
+           float: inline-end;
+           height: auto;
+         }
+
+         @media (max-width: 672px) {
+           .page--landing__illo {
+             max-width: 528px;
+             width: 100%;
+             height: 100%;
+             float: inline-start;
+           }
+         }
+
+         .page--landing__tabs {
+           margin: -1 * $spacing-08 0 $spacing-08;
+         }
+
+         .page--landing__subheading {
+           @include type-style('productive-heading-03');
+
+           font-weight: 600;
+         }
+
+         .page--landing__p {
+           @include type-style('productive-heading-03');
+           margin-top: $spacing-06;
+           margin-bottom: $spacing-08;
+         }
+         ```
+
+   6. The final row of our grid needs populating.
+
+      1. Replace each of the `1/4` with `The principles`, `Carbon is open`, `Carbon is modular`, `Carbon is consistent`.
+      2. Next we need to adjust the column sizes as we want the contents to wrap on a medium size. The 2nd, 3rd and 4th columns should use the following.
+
+         ```js
+           sizes: {
+               sm: 4,
+               md: { span: 6, offset: 2 },
+               lg: { span: 4, offset: 4 },
+             }
+         ```
+
+         ```js
+           sizes: {
+               sm: 4,
+               md: { span: 6, offset: 2 },
+               lg: { span: 4, offset: 8 },
+             }
+         ```
+
+         ```js
+           sizes: {
+               sm: 4,
+               md: { span: 6, offset: 2 },
+               lg: { span: 4, offset: 12 },
+             }
+         ```
+
+      3. The medium offset forces us to specify an offset at the large size. If you give this a try in the browser you should see these columns wrap when the screen reaches medium size.
+      4. To finish up our landing page we need to add a little more to `./components/page-landing.scss` inside the `:host` definition.
+
+         ```scss
+         .page--landing__r3 {
+           height: 100%;
+           padding: 3rem 0;
+           box-sizing: border-box;
+           background: $layer-01;
+           box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
+         }
+
+         .page--landing__label {
+           @include type-style('productive-heading-01');
+         }
+         ```
+
+   7. Step 2 for the landing page is now complete and should look like this.
+      ![The landing page after step 2.](./codealong-md-images/landing-page-step-2.png)
+
+3. asdf
