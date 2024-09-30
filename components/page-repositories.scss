@@ -1,0 +1,17 @@
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/breakpoint' as *;
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/type' as *;
+
+:host(page-repositories) {
+  .cds--css-grid {
+    padding: $spacing-06;
+    box-sizing: border-box;
+  }
+
+  .page--repositories {
+    height: 100%;
+    overflow-y: auto;
+  }
+}
