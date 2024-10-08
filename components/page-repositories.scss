@@ -5,12 +5,9 @@
 @use '@carbon/styles/scss/type' as *;
 
 :host(page-repositories) {
-  .cds--css-grid {
-    padding: $spacing-06;
-    box-sizing: border-box;
-  }
-
   .page--repositories {
+    box-sizing: border-box;
+    padding: $spacing-06 0;
     height: 100%;
     overflow-y: auto;
   }

@@ -1,0 +1,12 @@
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing' as *;
+
+:host(my-grid) {
+  display: grid;
+
+  .cds--css-grid {
+    padding-left: $spacing-06;
+    padding-right: $spacing-06;
+    box-sizing: border-box;
+  }
+}

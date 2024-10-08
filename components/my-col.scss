@@ -1,0 +1,6 @@
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing' as *;
+
+:host(my-col) {
+  display: block;
+}
