@@ -22,7 +22,7 @@ export const gridClasses = ({
     classes.push(`${gridClass}--full-wide`);
   }
 
-  return classes;
+  return classes.join(' ');
 };
 
 export const colClasses = ({ class: className = '', sizes }) => {
@@ -49,5 +49,5 @@ export const colClasses = ({ class: className = '', sizes }) => {
     }
   }
 
-  return classes;
+  return classes.join(' ');
 };
