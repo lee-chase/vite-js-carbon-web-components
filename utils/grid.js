@@ -8,7 +8,7 @@ export const gridClasses = ({
   const classes = [];
 
   if (className) {
-    classes.push(className);
+    classes.push(...className.split(' '));
   }
 
   const gridClass = sub ? 'cds--subgrid' : 'cds--css-grid';
@@ -29,7 +29,7 @@ export const colClasses = ({ class: className = '', sizes }) => {
   const classes = [];
 
   if (className) {
-    classes.push(className);
+    classes.push(...className.split(' '));
   }
 
   const colClass = 'cds--css-grid-column';

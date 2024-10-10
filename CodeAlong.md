@@ -1216,3 +1216,166 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
    ```
 
 9. If all has gone well you should now be able to run your application, with the same results before this Lit refactor.
+
+## Step 3
+
+This step we populate the repositories page with real data.
+
+1. Add `octokit` to the dependencies.
+
+```sh
+pnpm add @octokit/core
+```
+
+2. Create a new link list component.
+
+   1. Add link to the list of Carbon components in `./main.js`
+
+   ```js
+   import '@carbon/web-components/es/components/link/index';
+   ```
+
+   2. Create `./components/link-list.js` and generate a new component.
+   3. Update to the following which renders a list our list of links.
+
+      ```js
+      import { LitElement, html, unsafeCSS } from 'lit';
+      import styles from './link-list.scss?inline';
+
+      export class LinkList extends LitElement {
+        static properties = {
+          url: String,
+          homepage: String,
+        };
+
+        render() {
+          return html`<ul class="link-list">
+            <li><cds-link href="${this.url}">Github</cds-link></li>
+            <li>
+              <cds-link href="${this.homepage}">Homepage</cds-link>
+            </li>
+          </ul>`;
+        }
+
+        static get styles() {
+          return [unsafeCSS(styles)];
+        }
+      }
+      customElements.define('link-list', LinkList);
+      ```
+
+   4. Add `./components/link-list.scss` with the following styles
+
+      ```scss
+      @use '@carbon/styles/scss/spacing' as *;
+
+      :host(link-list) {
+        .link-list {
+          display: flex;
+          list-style: none;
+          padding: 0;
+        }
+
+        .link-list li:not(:last-child) {
+          padding-right: $spacing-02;
+
+          &::after {
+            content: '|';
+            display: inline;
+          }
+        }
+
+        .link-list li:not(:first-child) {
+          padding-left: $spacing-02;
+        }
+      }
+      ```
+
+3. In `./components/page-repositories.js`
+
+   1. Import Octokit and instantiate a new client.
+
+      ```js
+      import { Octokit } from '@octokit/core';
+
+      const octokitClient = new Octokit({});
+      ```
+
+   2. Remove the hard coded data.
+   3. Add the following constructor
+
+      ```js
+        constructor() {
+          super();
+          this.data = [];
+          this.loading = true;
+          this.error = null;
+        }
+      ```
+
+   4. Add this function to fetch the data. The set requestUpdate nudges Lit to re-render as replacing `this.data` is not reactive.
+
+      ```js
+          async fetchData() {
+            // this.data = [...data];
+            const res = await octokitClient.request('GET /orgs/{org}/repos', {
+              org: 'carbon-design-system',
+              per_page: 75,
+              sort: 'updated',
+              direction: 'desc',
+            });
+
+            if (res.status === 200) {
+              this.data = res.data.map((row) => ({
+                name: row.name,
+                created: new Date(row.created_at).toLocaleDateString(),
+                updated: new Date(row.updated_at).toLocaleDateString(),
+                openIssues: row.open_issues_count,
+                stars: row.stargazers_count,
+                links: { url: row.html_url, homepage: row.homepage },
+                expansion: row.description,
+              }));
+              this.loading = false;
+              this.requestUpdate();
+            } else {
+              console.log('Error obtaining repository data');
+            }
+          }
+      ```
+
+   5. Call the fetchData function from the `connectedCallback` lifecycle event.
+
+      ```js
+      connectedCallback() {
+        super.connectedCallback();
+        this.fetchData();
+      }
+      ```
+
+   6. Making use of `this.loading` to render a table skeleton by wrapping the existing `cds-table` render with the following.
+
+      ```js
+        ${this.loading
+          ? html`<cds-table-skeleton></cds-table-skeleton>`
+          : html`EXISTING cds-table HTML`}
+      ```
+
+   7. Replace `data.map` with `this.data.map` and the table should render, if not quite correctly.
+   8. The last step is to replace `${cell}` with the following to render our link-list.
+
+      ```js
+          ${key === 'links'
+            ? html`<link-list
+                homepage="${cell.homepage}"
+                url="${cell.url}"
+              >
+              </link-list>`
+            : cell}
+      ```
+
+4. asdf
+5. asdf
+6. asdf
+7. asdf
+8. asdf
+9.
