@@ -996,7 +996,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
 
 Before moving on we'll refactor and tidy away the grid and column HTML into Lit Web components.
 
-1. First create the MyGrid component.
+1. First create the grid component.
 
    1. Create `./components/my-grid.js` and using the snippet or copying and pasting the following base component.
 
@@ -1032,25 +1032,187 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
         }
       ```
 
-   3. Replace the contents of the render function with the following. Which takes the properties supplied and applies them to the contents of the component.
+   3. Import `gridClasses` from `./utils/grid.js`
+   4. Replace the contents of the render function with the following. Which takes the properties supplied and applies them to the contents of the component.
 
-```js
-const classes = gridClasses(this).join(' ');
+      ```js
+      const classes = gridClasses(this).join(' ');
 
-// Grid styling added to contained components, allowing CSS Grid
-// to affect the it's own slot content.
-return html`<div class="${classes}" style="${this.shadowStyle}">
-  <slot></slot>
-</div> `;
-```
+      // Grid styling added to contained components, allowing CSS Grid
+      // to affect the it's own slot content.
+      return html`<div class="${classes}" style="${this.shadowStyle}">
+        <slot></slot>
+      </div> `;
+      ```
 
-4.  Add the component to `./components/index.js`
-5.  In `./components/page-repositories.js` replace the outer div
+   5. Create `./components/my-grid.scss` and add the following.
 
-```txt
-<div[\s\n]+class="\$\{colClasses\(\{[^:]*class: ([^,]+),[^:]*sizes: ([^)]*\}),[^)]*\)\}"[^>]+>
-```
+      ```scss
+      @use '@carbon/styles/scss/grid';
+      @use '@carbon/styles/scss/spacing' as *;
 
-```txt
-<my-col class=$1 .sizes="${$2}">
-```
+      :host(my-grid) {
+        display: grid;
+
+        .cds--css-grid {
+          padding-left: $spacing-06;
+          padding-right: $spacing-06;
+          box-sizing: border-box;
+        }
+      }
+      ```
+
+   6. Import and makes use of it in `./components/my-grid.js` as per previous examples.
+
+2. Next up the column component
+
+   1. Create `./components/my-col.js` and using the snippet or copying and pasting the following base component.
+
+      ```js
+      import { LitElement, html } from 'lit';
+
+      export class MyCol extends LitElement {
+        render() {
+          return html``;
+        }
+      }
+      customElements.define('my-col', MyCol);
+      ```
+
+   2. Add these properties and constructor
+
+      ```js
+      static properties = {
+        class: { type: String },
+        sizes: { type: Object },
+      };
+
+      constructor() {
+        super();
+        this.class = this.class ?? '';
+        this.sizes = this.sizes ?? undefined;
+      }
+
+      ```
+
+   3. Import `colClasses` from `./utils/grid.js`.
+   4. Then replace the render function with the following. This adds the column classes to the containing tag. This is to enable it to work with the CSS Grid correctly.
+
+      ```js
+      const classes = colClasses(this);
+
+      // Add the classes to the container so they see the grid
+      classes.forEach((val) => this.classList.add(val));
+
+      return html`<slot></slot>`;
+      ```
+
+   5. Create `./components/my-col.scss` and add the following.
+
+      ```scss
+      @use '@carbon/styles/scss/grid';
+      @use '@carbon/styles/scss/spacing' as *;
+
+      :host(my-col) {
+        display: block;
+      }
+      ```
+
+   NOTE: The display block here allows us to size the column component correctly.
+
+3. Import and makes use of it in `./components/my-col.js` as per previous examples.
+
+4. Add `my-grid` and `my-col` components to `./components/index.js`
+5. Update `./components/page-repositories.js`
+
+   1. Remove the `colClasses` and `gridClasses` imports.
+   2. Replace the outer div with
+
+      ```html
+      <my-grid class="page--repositories" fullWidth> ... </my-grid>
+      ```
+
+   3. Replace the column divs with use of my-col with
+
+      ```html
+      <my-col
+        class="page--repositories__table"
+        .sizes="${{ sm: 4, md: 8, lg: 16 }}"
+      >
+        ...
+      </my-col>
+      ```
+
+6. A small adjustment to `./components/page-repositories.scss` removes the `.cds--css-grid` selector and adds the following to the `.page--repositories` selector.
+
+   ```scss
+   padding: $spacing-06 0;
+   box-sizing: border-box;
+   ```
+
+7. Update `./components/page-landing.js`
+
+   1. Remove the `colClasses` and `gridClasses` imports.
+   2. Replace each of the five divs where `girdClasses` is used with `my-grid`
+
+      1. For example
+
+      ```html
+      <div
+        class="${gridClasses({ class: 'page--landing', fullWidth: true })}"
+      ></div>
+      ```
+
+      becomes
+
+      ```html
+      <my-grid
+        class="page--landing"
+        fullWidth
+        shadowStyle="grid-template-rows: auto 1fr auto"
+      ></my-grid>
+      ```
+
+      NOTE: The outer grid is the only grid where we pass `shadowStyle` this is used to size the three rows vertically. This can't be done from outside of the location the CSS grid is applied.
+
+      NOTE 2: Boolean parameters like `fullWidth` do not need a value to be passed.
+
+   3. Replace each of the eleven divs where `colClasses` is used with `my-col`.
+
+      1. For example using the following regular expression
+
+      ```regex
+      <div[\s\n]+class="\$\{colClasses\(\{[^:]*class: ([^,]+),[^:]*sizes: ([^)]*\}),[^)]*\)\}"[^>]+>
+      ```
+
+      replacing with
+
+      ```regex
+      <my-col class=$1 .sizes="${$2}">
+      ```
+
+      NOTE: This updates nine of the opening tags, leaving two to tackle manually.
+
+      NOTE 2: The size attribute is passing an object and makes use of the `.attr="${obj}"` syntax.
+
+      2. Manually extracting `class: 'xyx'` and `size: obj` to
+
+      ```html
+      <my-col class="xyz" .size="${obj}"> ... </my-col>
+      ```
+
+   4. It may take more than one attempt to make sure you match each opening and closing div successfully. Note only three divs should remain.
+
+8. In `./components/page-landing.scss` you can remove
+
+   ```scss
+   @include grid.css-grid();
+
+   .cds--css-grid {
+     padding-left: $spacing-06;
+     padding-right: $spacing-06;
+     box-sizing: border-box;
+   }
+   ```
+
+9. If all has gone well you should now be able to run your application, with the same results before this Lit refactor.
