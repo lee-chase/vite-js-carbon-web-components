@@ -12,6 +12,8 @@ export class PageRepositories extends LitElement {
     this.data = [];
     this.loading = true;
     this.error = null;
+    this.pageSize = 10;
+    this.firstRowIndex = 0;
   }
 
   connectedCallback() {
@@ -47,6 +49,16 @@ export class PageRepositories extends LitElement {
     }
   }
 
+  handlePageSizeChange(val) {
+    // Unfortunately not working
+    // https://github.com/carbon-design-system/carbon/issues/17713
+  }
+
+  handlePagesChange({ detail }) {
+    this.firstRowIndex = (detail.page - 1) * detail.pageSize;
+    this.requestUpdate();
+  }
+
   render() {
     return html`
       <my-grid class="page--repositories" fullWidth>
@@ -76,28 +88,48 @@ export class PageRepositories extends LitElement {
                     </cds-table-header-row>
                   </cds-table-head>
                   <cds-table-body>
-                    ${this.data.map(
-                      (row) => html`<cds-table-row>
-                          ${Object.keys(row).map((key) => {
-                            const cell = row[key];
-                            if (key !== 'expansion') {
-                              return html`<cds-table-cell data-key="${key}"
-                                >${key === 'links'
-                                  ? html`<link-list
-                                      homepage="${cell.homepage}"
-                                      url="${cell.url}"
-                                    >
-                                    </link-list>`
-                                  : cell}</cds-table-cell
-                              >`;
-                            }
-                          })} </cds-table-row
-                        ><cds-table-expanded-row
-                          >${row.expansion}</cds-table-expanded-row
-                        >`,
-                    )}
+                    ${this.data
+                      .filter(
+                        (v, i) =>
+                          i >= this.firstRowIndex &&
+                          i < this.firstRowIndex + this.pageSize,
+                      )
+                      .map(
+                        (row) => html`<cds-table-row>
+                            ${Object.keys(row).map((key) => {
+                              const cell = row[key];
+                              if (key !== 'expansion') {
+                                return html`<cds-table-cell data-key="${key}"
+                                  >${key === 'links'
+                                    ? html`<link-list
+                                        homepage="${cell.homepage}"
+                                        url="${cell.url}"
+                                      >
+                                      </link-list>`
+                                    : cell}</cds-table-cell
+                                >`;
+                              }
+                            })} </cds-table-row
+                          ><cds-table-expanded-row
+                            >${row.expansion}</cds-table-expanded-row
+                          >`,
+                      )}
                   </cds-table-body>
                 </cds-table>
+                <cds-pagination
+                  total-items="${this.data.length}"
+                  backward-text="Previous page"
+                  forward-text="Next page"
+                  itemsPerPageText="Items per page"
+                  @cds-pagination-changed-current="${this.handlePagesChange}"
+                  @cds-page-sizes-select-changed="${this.handlePageSizeChange}"
+                >
+                  <cds-select-item value="10">10</cds-select-item>
+                  <cds-select-item value="20">20</cds-select-item>
+                  <cds-select-item value="30">30</cds-select-item>
+                  <cds-select-item value="40">40</cds-select-item>
+                  <cds-select-item value="50">50</cds-select-item>
+                </cds-pagination>
               `}
         </my-col>
       </my-grid>
