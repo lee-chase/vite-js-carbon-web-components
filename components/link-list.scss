@@ -1,0 +1,22 @@
+@use '@carbon/styles/scss/spacing' as *;
+
+:host(link-list) {
+  .link-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .link-list li:not(:last-child) {
+    padding-right: $spacing-02;
+
+    &::after {
+      content: '|';
+      display: inline;
+    }
+  }
+
+  .link-list li:not(:first-child) {
+    padding-left: $spacing-02;
+  }
+}

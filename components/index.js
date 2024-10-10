@@ -6,3 +6,4 @@ import './page-repositories';
 import './tutorial-app';
 import './my-grid';
 import './my-col';
+import './link-list';
