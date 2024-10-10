@@ -7,7 +7,7 @@ export class MyCount extends LitElement {
 
   constructor() {
     super();
-    this.count = this.count ?? 0;
+    this.count = this.count ?? 0; // set a default value
   }
 
   render() {
