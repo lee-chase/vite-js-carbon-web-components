@@ -1,7 +1,21 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 
 import styles from './page-landing.scss?inline';
+
+import advocate from '@carbon/pictograms/svg/advocate.svg?raw';
+import accelerating from '@carbon/pictograms/svg/accelerating-transformation.svg?raw';
+import globe from '@carbon/pictograms/svg/globe.svg?raw';
+import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
+
 export class PageLanding extends LitElement {
+  constructor() {
+    super();
+
+    this.advocate = unsafeSVG(advocate);
+    this.accelerating = unsafeSVG(accelerating);
+    this.globe = unsafeSVG(globe);
+  }
+
   increment = () => {
     const countEl = this.shadowRoot.querySelector('.count');
     countEl.count += 1;
@@ -119,7 +133,7 @@ export class PageLanding extends LitElement {
             class="page--landing__label"
             .sizes="${{
               sm: 4,
-              md: 2,
+              md: 6,
               lg: 4,
             }}"
           >
@@ -129,31 +143,50 @@ export class PageLanding extends LitElement {
             class="page--landing__title"
             .sizes="${{
               sm: 4,
-              md: { span: 6, offset: 2 },
+              md: 6,
               lg: { span: 4, offset: 4 },
             }}"
           >
-            Carbon is open
+            <info-card headingPart1="Carbon is" headingPart2="Open">
+              It's a distributed effort, guided by the principles of the
+              open-source movement. Carbon's users are also it's makers, and
+              everyone is encouraged to contribute."
+
+              <div slot="icon">${this.advocate}</div>
+            </info-card>
           </my-col>
           <my-col
             class="page--landing__title"
             .sizes="${{
               sm: 4,
-              md: { span: 6, offset: 2 },
+              md: 6,
               lg: { span: 4, offset: 8 },
             }}"
           >
-            Carbon is modular
+            <info-card headingPart1="Carbon is" headingPart2="Modular">
+              Carbon's modularity ensures maximum flexibility in execution. It's
+              components are designed to work seamlessly with each other, in
+              whichever combination suits the needs of the user.
+
+              <div slot="icon">${this.accelerating}</div>
+            </info-card>
           </my-col>
           <my-col
             class="page--landing__title"
             .sizes="${{
               sm: 4,
-              md: { span: 6, offset: 2 },
+              md: 6,
               lg: { span: 4, offset: 12 },
             }}"
           >
-            Carbon is consistent
+            <info-card headingPart1="Carbon is" headingPart2="Consistent">
+              Based on the comprehensive IBM Design Language, every element and
+              component of Carbon was designed from the ground up to work
+              elegantly together to ensure consistent, cohesive user
+              experiences.
+
+              <div slot="icon">${this.globe}</div>
+            </info-card>
           </my-col>
         </my-grid>
       </my-col>

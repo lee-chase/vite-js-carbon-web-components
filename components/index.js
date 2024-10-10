@@ -7,3 +7,4 @@ import './tutorial-app';
 import './my-grid';
 import './my-col';
 import './link-list';
+import './info-card';

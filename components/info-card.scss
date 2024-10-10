@@ -1,0 +1,41 @@
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/breakpoint' as *;
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/type' as *;
+
+:host(info-card) {
+  .info-card {
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-inline: $spacing-05;
+    border-left: 1px solid $border-subtle;
+
+    @include breakpoint-down(lg) {
+      border-left: none;
+      padding-inline: 0;
+      padding-top: $spacing-11;
+      height: initial;
+    }
+  }
+
+  .info-card__heading {
+    @include type-style('heading-03');
+
+    margin-top: 0;
+  }
+
+  .info-card__body {
+    @include type-style('body-long-01');
+  }
+
+  .info-card__icon {
+    height: $spacing-10;
+    width: $spacing-10;
+
+    @include breakpoint-down(lg) {
+      margin-top: $spacing-09;
+    }
+  }
+}
