@@ -1373,9 +1373,240 @@ pnpm add @octokit/core
             : cell}
       ```
 
-4. asdf
-5. asdf
-6. asdf
-7. asdf
-8. asdf
-9.
+4. Adding pagination
+
+   1. Add the pagination component to the imports in `./main.js`
+   2. In `./components/page-repositories.js` add two more state values to the constructor.
+
+      ```js
+      this.pageSize = 10;
+      this.firstRowIndex = 0;
+      ```
+
+   3. Add methods to handle pagination change
+
+      ```js
+          handlePageSizeChange(val) {
+            // Unfortunately not working
+            // https://github.com/carbon-design-system/carbon/issues/17713
+          }
+
+          handlePagesChange({ detail }) {
+            this.firstRowIndex = (detail.page - 1) * detail.pageSize;
+            this.requestUpdate();
+          }
+      ```
+
+   4. Where the data is being iterated over insert the following filter before the map.
+
+      ```js
+        this.data
+          .filter(
+            (v, i) =>
+              i >= this.firstRowIndex &&
+              i < this.firstRowIndex + this.pageSize,
+          )
+          .map(...
+      ```
+
+   5. Add the pagination after the closing `cds-table` tag.
+
+      ```html
+      <cds-pagination
+        total-items="${this.data.length}"
+        backward-text="Previous page"
+        forward-text="Next page"
+        itemsPerPageText="Items per page"
+        @cds-pagination-changed-current="${this.handlePagesChange}"
+        @cds-page-sizes-select-changed="${this.handlePageSizeChange}"
+      >
+        <cds-select-item value="10">10</cds-select-item>
+        <cds-select-item value="20">20</cds-select-item>
+        <cds-select-item value="30">30</cds-select-item>
+        <cds-select-item value="40">40</cds-select-item>
+        <cds-select-item value="50">50</cds-select-item>
+      </cds-pagination>
+      ```
+
+   6. The table should now have pagination.
+
+## Step 4
+
+1. Add dependencies for `@carbon/pictograms`;
+
+```
+  pnpm @carbon/pictograms
+```
+
+2. Create info-card component
+
+   1. Create the file `./components/info-card.js` and generate/create a new component as follows.
+
+      ```js
+      import { LitElement, html } from 'lit';
+
+      export class InfoCard extends LitElement {
+        render() {
+          return html``;
+        }
+      }
+      customElements.define('info-card', InfoCard);
+      ```
+
+   2. Add the following properties
+
+      ```js
+      static properties = {
+        headingPart1: String,
+        headingPart2: String,
+        message: String,
+      };
+      ```
+
+   3. Update the render function to return the following HTML which includes slots for the body and icon.
+
+      ```html
+      <div class="info-card">
+        <div>
+          <h4 class="info-card__heading">
+            ${this.headingPart1}
+            <strong>${this.headingPart2}</strong>
+          </h4>
+          <p class="info-card__body"><slot></slot></p>
+        </div>
+        <div class="info-card__icon">
+          <slot name="icon"></slot>
+        </div>
+      </div>
+      ```
+
+   4. Add the component to `./components/index.js`.
+
+3. Next we will adjust `./components/page-landing.js`
+
+   1. Add the following imports for the pictograms and `unsafeSVG`.
+
+      ```js
+      import advocate from '@carbon/pictograms/svg/advocate.svg?raw';
+      import accelerating from '@carbon/pictograms/svg/accelerating-transformation.svg?raw';
+      import globe from '@carbon/pictograms/svg/globe.svg?raw';
+      import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
+      ```
+
+      NOTE: As per other `unsafe` imports this refers to allowing others to inject into your application. You should always take care to prevent that, in this tutorial it is not a concern.
+
+   2. Add a constructor that reads the SVGs.
+
+      ```js
+
+        constructor() {
+          super();
+
+          this.advocate = unsafeSVG(advocate);
+          this.accelerating = unsafeSVG(accelerating);
+          this.globe = unsafeSVG(globe);
+        }
+
+      ```
+
+   3. Next change the columns for `page--landing__r3` to cope with the new info cards. Replacing each of the `md: ...` values with `md: 6,`
+   4. Carbon is open card
+
+      ```html
+      <info-card headingPart1="Carbon is" headingPart2="Open">
+        It's a distributed effort, guided by the principles of the open-source
+        movement. Carbon's users are also it's makers, and everyone is
+        encouraged to contribute."
+
+        <div slot="icon">${this.advocate}</div>
+      </info-card>
+      ```
+
+   5. Carbon is modular card
+
+      ```html
+      <info-card headingPart1="Carbon is" headingPart2="Modular">
+        Carbon's modularity ensures maximum flexibility in execution. It's
+        components are designed to work seamlessly with each other, in whichever
+        combination suits the needs of the user.
+
+        <div slot="icon">${this.accelerating}</div>
+      </info-card>
+      ```
+
+   6. Carbon is consistent card
+
+      ```html
+      <info-card headingPart1="Carbon is" headingPart2="Consistent">
+        Based on the comprehensive IBM Design Language, every element and
+        component of Carbon was designed from the ground up to work elegantly
+        together to ensure consistent, cohesive user experiences.
+
+        <div slot="icon">${this.globe}</div>
+      </info-card>
+      ```
+
+   7. No styling has been applied to the `info-card` components yet, so it will run but look a bit funky.
+
+4. Add `info-card` styling.
+
+   1. Create `./components/info-card.scss` and add the following SCSS to style our component and ensure it behaves responsively. There should be nothing unexpected in this styling.
+
+      ```scss
+      @use '@carbon/styles/scss/spacing' as *;
+      @use '@carbon/styles/scss/breakpoint' as *;
+      @use '@carbon/styles/scss/theme' as *;
+      @use '@carbon/styles/scss/type' as *;
+
+      :host(info-card) {
+        .info-card {
+          display: flex;
+          height: 300px;
+          flex-direction: column;
+          justify-content: space-between;
+          padding-inline: $spacing-05;
+          border-left: 1px solid $border-subtle;
+
+          @include breakpoint-down(lg) {
+            border-left: none;
+            padding-inline: 0;
+            padding-top: $spacing-11;
+            height: initial;
+          }
+        }
+
+        .info-card__heading {
+          @include type-style('heading-03');
+
+          margin-top: 0;
+        }
+
+        .info-card__body {
+          @include type-style('body-long-01');
+        }
+
+        .info-card__icon {
+          height: $spacing-10;
+          width: $spacing-10;
+
+          @include breakpoint-down(lg) {
+            margin-top: $spacing-09;
+          }
+        }
+      }
+      ```
+
+   2. Update `./components/info-card.js` to make use of the styles and you should now have a completed tutorial.
+
+## Step 5
+
+This tutorial is missing all manner of things that a good project should have.
+
+- Testing
+- Spell checker
+- Script linting
+- Style linting
+
+Time constraints mean there is no step 5 to include them, not yet...
+
+Feel free to submit a PR with the enhancements you think should be included.
