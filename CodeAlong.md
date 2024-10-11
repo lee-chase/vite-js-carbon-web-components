@@ -16,7 +16,7 @@ Starting from a base Create Next App, let’s install Carbon and begin using Car
     4. Check it runs.
 3.  Add Carbon
 
-    1. pnpm add @carbon/web-components @carbon/styles @carbon/icons
+    1. `pnpm add @carbon/web-components @carbon/styles @carbon/icons`
     2. In `main.js`
 
        1. Import the Carbon button component.
@@ -41,8 +41,6 @@ Starting from a base Create Next App, let’s install Carbon and begin using Car
          color: $text-primary;
        }
        ```
-
-    4. Check it runs.
 
 4.  In `index.html`
 
@@ -288,6 +286,7 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
       ```js
           constructor() {
+            super();
             this.globalActions = [{
                 icon: Notification20,
                 label: 'Notifications',
@@ -460,7 +459,7 @@ Rather than import one of these packages, let's continue and refactor using `Lit
          }
          ```
 
-      4. Import this file into `./components/tutorial-app.js` using this line. A differrent approach may be required when not using Vite.
+      4. Import this file into `./components/tutorial-app.js` using this line. A different approach may be required when not using Vite.
 
          ```js
          import styles from './tutorial-app.scss?inline';
@@ -500,6 +499,7 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
       2. Then replace `<page-landing></page-landing>` in the template literal with `${page}`.
       3. Note that in `tutorial-header.js` we can now replace `repositories.html` with `repositories` making our URL a little neater.
+      4. Delete `repositories.html` otherwise it interferes
 
 7. Hopefully at this point you have a working application that looks something like this.
    ![Application landing page](./codealong-md-images/AppPageLanding.png)
