@@ -4,27 +4,27 @@ import styles from './tutorial-app.scss?inline';
 export class TutorialApp extends LitElement {
   render() {
     const path = window.location.pathname;
-    let page;
+    let main;
 
     switch (path) {
       case '/repositories.html':
       case '/repositories':
-        page = html`<page-repositories></page-repositories>`;
+        main = html`<page-repositories></page-repositories>`;
         break;
       default:
         if (path !== '/') {
           window.history.replaceState({}, '', '/');
         }
-        page = html`<page-landing></page-landing>`;
+        main = html`<page-landing></page-landing>`;
         break;
     }
 
-    return html` <div class="app g10">
+    return html`<div class="app g10">
       <header>
         <tutorial-header class="g100"></tutorial-header>
       </header>
 
-      <main>${page}</main>
+      <main>${main}</main>
     </div>`;
   }
 
