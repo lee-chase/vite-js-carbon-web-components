@@ -473,7 +473,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
          }
          ```
 
-      6. The application styling should now look correct again.
+      6. DON'T FORGET TO IMPORT unsafeCSS
+      7. The application styling should now look correct again.
 
    6. Finally we need to fix our routing.
 
