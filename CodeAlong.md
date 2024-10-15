@@ -741,7 +741,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
           ```
 
        2. Then change `20px` in `.cds--css-grid` to `$spacing-06` (24px).
-       3. To style the content of the banner add this inside the `:host(page-heading)`
+       3. To style the content of the banner add this inside the `:host(page-landing)`
 
        ```scss
        .page--landing {
