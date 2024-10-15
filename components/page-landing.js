@@ -30,7 +30,7 @@ export class PageLanding extends LitElement {
             sizes: { sm: 4, md: 8, lg: 16 },
           })}"
         >
-          <cds-tabs value="about">
+          <cds-tabs value="about" " class="page--landing__tabs">
             <cds-tab id="tab-about" value="about" target="panel-about"
               >About</cds-tab
             >

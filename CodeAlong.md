@@ -632,7 +632,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
     3. In the second column element `class: 'page--landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
 
        ```html
-       <cds-tabs value="about">
+       <cds-tabs value="about" class="page--landing__tabs">
          <cds-tab id="tab-about" value="about" target="panel-about"
            >About</cds-tab
          >
