@@ -1,24 +1,31 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { LitElement, html } from 'lit';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+import '@carbon/web-components/es/components/button/button.js';
+import '@carbon/web-components/es/components/ui-shell/index';
+import './style.scss';
 
-setupCounter(document.querySelector('#counter'))
+export class MyCount extends LitElement {
+  static properties = {
+    count: { attribute: true, type: Number },
+  };
+
+  constructor() {
+    super();
+    this.count = this.count ?? 0;
+  }
+
+  render() {
+    return html`<div>
+      <span>Count: </span>
+      <span class="count">${this.count}</span>
+    </div>`;
+  }
+}
+customElements.define('my-count', MyCount);
+
+export const increment = () => {
+  const countEl = document.querySelector('.count');
+  countEl.count += 1;
+};
+
+document.querySelector('.button').addEventListener('click', increment);
