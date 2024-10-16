@@ -474,7 +474,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
          }
          ```
 
-      6. The application styling should now look correct again.
+      6. DON'T FORGET TO IMPORT unsafeCSS
+      7. The application styling should now look correct again.
 
    6. Finally we need to fix our routing.
 
@@ -631,7 +632,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
     3. In the second column element `class: 'page--landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
 
        ```html
-       <cds-tabs value="about">
+       <cds-tabs value="about" class="page--landing__tabs">
          <cds-tab id="tab-about" value="about" target="panel-about"
            >About</cds-tab
          >
@@ -740,7 +741,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
           ```
 
        2. Then change `20px` in `.cds--css-grid` to `$spacing-06` (24px).
-       3. To style the content of the banner add this inside the `:host(page-heading)`
+       3. To style the content of the banner add this inside the `:host(page-landing)`
 
        ```scss
        .page--landing {
