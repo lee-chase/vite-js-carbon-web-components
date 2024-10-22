@@ -4,6 +4,21 @@
 
 :root {
   @include theme(themes.$g10);
+
   background-color: $background;
   color: $text-primary;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include theme(themes.$g100);
+  }
+}
+
+.light {
+  @include theme(themes.$g10);
+}
+
+.dark {
+  @include theme(themes.$g100);
 }

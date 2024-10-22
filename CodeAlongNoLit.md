@@ -41,8 +41,18 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
 
        :root {
          @include theme(themes.$g10);
-         background-color: $background;
-         color: $text-primary;
+
+         @media (prefers-color-scheme: dark) {
+           @include theme(themes.$g100);
+         }
+       }
+
+       .light {
+         @include theme(themes.$g10);
+       }
+
+       .dark {
+         @include theme(themes.$g100);
        }
        ```
 
@@ -62,6 +72,20 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
     1. Replace the body content again with
 
        ```html
-       <cds-button class="button">Button</cds-button>
-       <div><span>Count: </span><span class="count">0</span></div>
+       <cds-button class="button">Click more than once</cds-button>
        ```
+
+6.  In `main.js` handle the button click adding
+
+        ```js
+        const handleClick = () => {
+            // By default may already be light so two clicks needed to go dark
+            // Will fix later.
+            document.querySelector(':root').classList.toggle('light');
+        };
+
+        document.querySelector('.button').addEventListener('click', handleClick);
+        ```
+
+7.  asdf
+8.
