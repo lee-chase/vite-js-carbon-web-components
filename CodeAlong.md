@@ -4,19 +4,21 @@ This document will grow and document what we did along the way.
 
 ## Step 1
 
-Starting from a base Create Next App, let’s install Carbon and begin using Carbon components. By the end you will have a Next.js app that uses the UI Shell to navigate between pages.
+Using your favorite package installer or `yarn` as we will use here. Create a Vite app with Vanilla Javascript.
+
+[Vite getting started](https://vite.dev/guide/#scaffolding-your-first-vite-project)
 
 1.  Check it runs
-    1. pnpm dev
+    1. yarn dev
     2. Stop it.
 2.  Add SASS.
-    1. Install SASS.
+    1. Install SASS `yarn sass`
     2. Rename `style.css` to `style.scss` and rerun.
     3. Update `main.js` to import the scss file.
     4. Check it runs.
 3.  Add Carbon
 
-    1. `pnpm add @carbon/web-components @carbon/styles @carbon/icons`
+    1. `yarn add @carbon/web-components @carbon/styles @carbon/icons`
     2. In `main.js`
 
        1. Import the Carbon button component.
@@ -77,7 +79,7 @@ Starting from a base Create Next App, let’s install Carbon and begin using Car
 
     2. A little bit of lit.
 
-       1. Install `pnpm add lit`
+       1. Install `yarn add lit`
        2. In `main.js` add the following import.
 
           ```js
@@ -1225,7 +1227,7 @@ This step we populate the repositories page with real data.
 1. Add `octokit` to the dependencies.
 
 ```sh
-pnpm add @octokit/core
+yarn add @octokit/core
 ```
 
 2. Create a new link list component.
@@ -1436,7 +1438,7 @@ pnpm add @octokit/core
 1. Add dependencies for `@carbon/pictograms`;
 
 ```
-  pnpm @carbon/pictograms
+  yarn @carbon/pictograms
 ```
 
 2. Create info-card component
