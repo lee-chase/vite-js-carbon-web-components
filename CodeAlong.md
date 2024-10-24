@@ -724,8 +724,9 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
                })}"
               >
                 <p class="page--landing__p">
-                  Carbon provides styles and components in Vanilla, React,
-                  Angular, and Vue for anyone building on the web.
+                  Carbon provides components and styles for all. Whether using
+                  Vanilla, Web Components, React, or another reactive library,
+                  you can build with Carbon.
                 </p>
               </div>
             </div>

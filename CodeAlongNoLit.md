@@ -625,8 +625,9 @@ In step 2 we will much of the landing page content and an example table to the r
             class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
           >
             <p class="page--landing__p">
-              Carbon provides styles and components in Vanilla, React, Angular,
-              and Vue for anyone building on the web.
+              Carbon provides components and styles for all. Whether using
+              Vanilla, Web Components, React, or another reactive library, you
+              can build with Carbon.
             </p>
           </div>
         </div>
