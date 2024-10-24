@@ -939,10 +939,8 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
              ${headings.map( (heading) =>
              html`<cds-table-header-cell>${heading}</cds-table-header-cell>`, )}
            </cds-table-header-row>
-         </cds-table-head></cds-table
-
-       >
-       <cds-table-body>Table body goes here</cds-table-body>
+         </cds-table-head>
+         <cds-table-body>Table body goes here</cds-table-body>
        </cds-table>
        ```
 

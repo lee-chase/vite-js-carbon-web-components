@@ -732,3 +732,171 @@ In step 2 we will much of the landing page content and an example table to the r
         background: $layer-01;
       }
       ```
+
+## Step 2 part 2 - repositories page
+
+1. Adding a grid to `repositories.html` wrapping `REPOSITORIES PAGE`
+
+   ```html
+   <div class="page page--repositories cds--css-grid cds--css-grid--full-width">
+     <div
+       class="repo-page__r1 cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--css-grid-column"
+     >
+       REPOSITORIES PAGE
+     </div>
+   </div>
+   ```
+
+2. In `main.js` import the table component.
+
+   ```js
+   import '@carbon/web-components/es/components/data-table/index.js';
+   ```
+
+3. Now we add an example table.
+
+   1. In `repositories.html` replace `REPOSITORIES PAGE` with
+
+      ```html
+      <cds-table expandable>
+        <cds-table-header-title slot="title"
+          >Carbon Repositories</cds-table-header-title
+        >
+        <cds-table-header-description slot="description"
+          >A collection of public Carbon
+          repositories.</cds-table-header-description
+        >
+        <cds-table-head>
+          <cds-table-header-row>
+            <cds-table-header-cell>Name</cds-table-header-cell>
+            <cds-table-header-cell>Created</cds-table-header-cell>
+            <cds-table-header-cell>Updated</cds-table-header-cell>
+            <cds-table-header-cell>Open issues</cds-table-header-cell>
+            <cds-table-header-cell>Stars</cds-table-header-cell>
+            <cds-table-header-cell>Links</cds-table-header-cell>
+          </cds-table-header-row>
+        </cds-table-head>
+        <cds-table-body>Table body goes here</cds-table-body>
+      </cds-table>
+      ```
+
+   2. Adding some rows
+
+      ```html
+      <cds-table-row>
+        <cds-table-cell>Repo 1</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>123</cds-table-cell>
+        <cds-table-cell>456</cds-table-cell>
+        <cds-table-cell>Links</cds-table-cell>
+      </cds-table-row>
+      <cds-table-expanded-row>Repo description</cds-table-expanded-row>
+      <cds-table-row>
+        <cds-table-cell>Repo 2</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>123</cds-table-cell>
+        <cds-table-cell>456</cds-table-cell>
+        <cds-table-cell>Links</cds-table-cell>
+      </cds-table-row>
+      <cds-table-expanded-row>Repo description</cds-table-expanded-row>
+      <cds-table-row>
+        <cds-table-cell>Repo 3</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>Date</cds-table-cell>
+        <cds-table-cell>123</cds-table-cell>
+        <cds-table-cell>456</cds-table-cell>
+        <cds-table-cell>Links</cds-table-cell>
+      </cds-table-row>
+      <cds-table-expanded-row>Repo description</cds-table-expanded-row>
+      ```
+
+   3. In `styles.scss` add the following padding around the table.
+
+   ```scss
+   .repo-page__r1 {
+     padding-block: $spacing-05;
+   }
+   ```
+
+4. With the app running we can see that the repositories page now hosts a table. However, it is not realistic to populate a table this way so we'll refactor to build the table from data.
+
+   1. In `index.html` remove the contents of the `<cds-table>` tag and return it to `Table body goes here`.
+   2. Before the end of the HTML document add the following HTML template.
+
+      ```html
+      <template id="template--table-row">
+        <cds-table-row>
+          <cds-table-cell key="name">Repo 1</cds-table-cell>
+          <cds-table-cell key="created">Date</cds-table-cell>
+          <cds-table-cell key="updated">Date</cds-table-cell>
+          <cds-table-cell key="openIssues">123</cds-table-cell>
+          <cds-table-cell key="stars">456</cds-table-cell>
+          <cds-table-cell key="links">Links</cds-table-cell>
+        </cds-table-row>
+        <cds-table-expanded-row key="expansion"
+          >Repo description</cds-table-expanded-row
+        >
+      </template>
+      ```
+
+   3. Next in `main.js` add the following data that we will use to populate the table rows.
+
+   ```js
+   // cds-table-row creation
+   const data = [
+     {
+       name: 'Repo A',
+       created: 'Date',
+       updated: 'Date',
+       openIssues: 123,
+       stars: 456,
+       links: 'Links',
+       expansion: 'Row description',
+     },
+     {
+       name: 'Repo B',
+       created: 'Date',
+       updated: 'Date',
+       openIssues: 123,
+       stars: 456,
+       links: 'Links',
+       expansion: 'Row description',
+     },
+     {
+       name: 'Repo C',
+       created: 'Date',
+       updated: 'Date',
+       openIssues: 123,
+       stars: 456,
+       links: 'Links',
+       expansion: 'Row description',
+     },
+   ];
+   ```
+
+   4. Still in `main.js` add the following to populate the table.
+
+      ```js
+      const tableRowTemplate = document.querySelector(
+        'template#template--table-row',
+      );
+      const tableBody = document.querySelector('cds-table-body');
+      if (tableBody && tableRowTemplate) {
+        tableBody.innerHTML = '';
+        data.forEach((row) => {
+          let newRow = tableRowTemplate.content.cloneNode(true);
+          const keys = Object.keys(row);
+          keys.forEach((key) => {
+            const keyEl = newRow.querySelector(`[key="${key}"]`);
+            keyEl.innerHTML = row[key];
+          });
+          tableBody.appendChild(newRow);
+        });
+      }
+      ```
+
+   5. Verify that the table rows are being generated by changing the data and running the app.
+
+Step 2 is now complete
