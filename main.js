@@ -6,6 +6,7 @@ import '@carbon/web-components/es/components/content-switcher/index';
 import '@carbon/web-components/es/components/breadcrumb/index';
 import '@carbon/web-components/es/components/tabs/index';
 import '@carbon/web-components/es/components/data-table/index.js';
+import '@carbon/web-components/es/components/link/index';
 
 const bodyEl = document.querySelector('body');
 
@@ -84,17 +85,24 @@ const data = [
     expansion: 'Row description',
   },
 ];
-const tableRowTemplate = document.querySelector('template#template--table-row');
-const tableBody = document.querySelector('cds-table-body');
-if (tableBody && tableRowTemplate) {
-  tableBody.innerHTML = '';
-  data.forEach((row) => {
-    let newRow = tableRowTemplate.content.cloneNode(true);
-    const keys = Object.keys(row);
-    keys.forEach((key) => {
-      const keyEl = newRow.querySelector(`[key="${key}"]`);
-      keyEl.innerHTML = row[key];
+
+const updatedTable = () => {
+  const tableRowTemplate = document.querySelector(
+    'template#template--table-row',
+  );
+  const tableBody = document.querySelector('cds-table-body');
+  if (tableBody && tableRowTemplate) {
+    tableBody.innerHTML = '';
+    data.forEach((row) => {
+      let newRow = tableRowTemplate.content.cloneNode(true);
+      const keys = Object.keys(row);
+      keys.forEach((key) => {
+        const keyEl = newRow.querySelector(`[key="${key}"]`);
+        keyEl.innerHTML = row[key];
+      });
+      tableBody.appendChild(newRow);
     });
-    tableBody.appendChild(newRow);
-  });
-}
+  }
+};
+
+updatedTable();
