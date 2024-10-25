@@ -671,7 +671,7 @@ In step 2 we will much of the landing page content and an example table to the r
 
       ```scss
       .page {
-        // remove
+        /* Remove outer grid padding */
         padding: 0;
 
         > * {
@@ -1260,3 +1260,47 @@ Step 2 is now complete
     ```
 
 ## Step 5
+
+While the Carbon component styles are encapsulated in the components there we have written some SCSS ourselves it would great if we could check we are applying Carbon as expected.
+
+1. Add some linting of our styles
+
+   1. Install `stylelint` and the plugin `stylelint-plugin-carbon-tokens`
+
+      ```
+      pnpm add stylelint stylelint-plugin-carbon-tokens
+      ```
+
+   2. In package.json add the following script.
+
+      ```
+      "lint:style": "yarn stylelint '**/*.scss'",
+      ```
+
+   3. In the root folder create a file called `.styelintrc.json` and add the following settings. The [recommended config](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/config/recommended.js) for the plugin checks layout, motion, theme and type usage against expectations. For more details take a look at the packages [README.md](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/README.md)
+
+      ```json
+      {
+        "extends": ["stylelint-plugin-carbon-tokens/config/recommended"],
+        "plugins": ["stylelint-plugin-carbon-tokens"],
+        "reportNeedlessDisables": true,
+        "reportInvalidScopeDisables": true,
+        "reportDescriptionlessDisables": true
+      }
+      ```
+
+   4. At the command line you can now run the script `lint:style`. This should highlight just the one issue with the setting of `font-weight` to 600.
+
+      ```
+      pnpn lint:style
+      ```
+
+   5. If you open the file you will see that `600` is marked with a wiggly underline. Hovering over it you will see a popup explanation.
+
+   ```
+   Expected carbon type token, mixin or function for "font-weight" found "600". (carbon/type-use)Stylelintcarbon/type-use
+   ```
+
+   6. Change `600` to `font-weight('semibold')`
+
+2.
