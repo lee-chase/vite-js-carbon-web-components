@@ -64,22 +64,7 @@
   <main class="main">
     <div class="page page--repositories cds--css-grid cds--css-grid--full-width">
       <div class="repo-page__r1 cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--css-grid-column">
-        <cds-table expandable>
-          <cds-table-header-title slot="title">Carbon Repositories</cds-table-header-title>
-          <cds-table-header-description slot="description">A collection of public Carbon
-            repositories.</cds-table-header-description>
-          <cds-table-head>
-            <cds-table-header-row>
-              <cds-table-header-cell>Name</cds-table-header-cell>
-              <cds-table-header-cell>Created</cds-table-header-cell>
-              <cds-table-header-cell>Updated</cds-table-header-cell>
-              <cds-table-header-cell>Open issues</cds-table-header-cell>
-              <cds-table-header-cell>Stars</cds-table-header-cell>
-              <cds-table-header-cell>Links</cds-table-header-cell>
-            </cds-table-header-row>
-          </cds-table-head>
-          <cds-table-body>Table body goes here</cds-table-body>
-        </cds-table>
+        <cds-table-skeleton></cds-table-skeleton>
       </div>
     </div>
   </main>
@@ -96,6 +81,32 @@
     <cds-table-cell key="links">Links</cds-table-cell>
   </cds-table-row>
   <cds-table-expanded-row key="expansion">Repo description</cds-table-expanded-row>
+</template>
+
+<template id="template--table">
+  <cds-table expandable>
+    <cds-table-header-title slot="title">Carbon Repositories</cds-table-header-title>
+    <cds-table-header-description slot="description">A collection of public Carbon
+      repositories.</cds-table-header-description>
+    <cds-table-head>
+      <cds-table-header-row>
+        <cds-table-header-cell>Name</cds-table-header-cell>
+        <cds-table-header-cell>Created</cds-table-header-cell>
+        <cds-table-header-cell>Updated</cds-table-header-cell>
+        <cds-table-header-cell>Open issues</cds-table-header-cell>
+        <cds-table-header-cell>Stars</cds-table-header-cell>
+        <cds-table-header-cell>Links</cds-table-header-cell>
+      </cds-table-header-row>
+    </cds-table-head>
+    <cds-table-body>Table body goes here</cds-table-body>
+  </cds-table>
+  <cds-pagination backward-text="Previous page" forward-text="Next page" itemsPerPageText="Items per page">
+    <cds-select-item value="10">10</cds-select-item>
+    <cds-select-item value="20">20</cds-select-item>
+    <cds-select-item value="30">30</cds-select-item>
+    <cds-select-item value="40">40</cds-select-item>
+    <cds-select-item value="50">50</cds-select-item>
+  </cds-pagination>
 </template>
 
 </html>
