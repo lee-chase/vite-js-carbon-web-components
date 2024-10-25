@@ -145,7 +145,7 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
        simply how HTML works. When using Web Components inside libraries such as Lit, React, Angular, Vue etc this is
        resolved by taking control of the routing. We will not investigate further here.
 
-4.  Checking responsive behavior (wubdiw narrower than 1080px) you will notice the repositories page disappear from the
+4.  Checking responsive behavior (window narrower than 1080px) you will notice the repositories page disappear from the
     menu. This goes into a sidebar controlled by a hamburger menu as follows.
 
     1. Before the `<cds-header-name>` tag add
@@ -1261,7 +1261,7 @@ cheapest time to avoid some issues.
    2. Add the additional packages.
 
       ```
-      pnpm add -D @double-great/stylelint-a11y stylelint-config-standard-scss stylelint-use-logica stylelint-use-logical-spec
+      pnpm add -D @double-great/stylelint-a11y stylelint-config-standard-scss stylelint-use-logical stylelint-use-logical-spec
       ```
 
    3. Re-run the script `lint:style` or view the style file to see additional concerns.

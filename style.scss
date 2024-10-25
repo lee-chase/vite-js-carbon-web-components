@@ -143,7 +143,7 @@ cds-content-switcher-item[selected] .theme-selector__icon {
 }
 
 .page-landing__tabs {
-  margin-block: (-1 * $spacing-08) $spacing-08;
+  margin-block: -1 * $spacing-08 $spacing-08;
   margin-inline: 0;
 }
 
@@ -154,7 +154,7 @@ cds-content-switcher-item[selected] .theme-selector__icon {
 .page-landing__subheading {
   @include type-style('productive-heading-03');
 
-  font-weight: font-weight('semibold');
+  font-weight: 600;
 }
 
 .page-landing__p {
