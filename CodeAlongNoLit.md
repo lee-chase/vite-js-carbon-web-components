@@ -1220,7 +1220,7 @@ cheapest time to avoid some issues.
       popup explanation.
 
    ```
-   Expected carbon type token, mixin or function for "font-weight" found "600". (carbon/type-use)Stylelintcarbon/type-use
+   Expected carbon type token, mixin or function for "font-weight" found "600". (carbon/type-use)
    ```
 
    6. Change `600` to `font-weight('semibold')`
