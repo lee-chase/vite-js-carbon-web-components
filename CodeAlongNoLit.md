@@ -57,10 +57,7 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
     1. Replace the contents of the `<body>` tag with
 
        ```html
-       <div>
-         Hello Carbon! Well, not quite yet. This is the starting point for the
-         Carbon Web Components tutorial.
-       </div>
+       <div>Hello Carbon! Well, not quite yet. This is the starting point for the Carbon Web Components tutorial.</div>
        ```
 
 5.  A Carbon button in `index.html`
@@ -91,14 +88,16 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
     }
     ```
 
-7.  Now there's a bit more than the handler here the match media query is there to ensure `g10` or `g100` is initially set based on the users preferences.
+7.  Now there's a bit more than the handler here the match media query is there to ensure `g10` or `g100` is initially
+    set based on the users preferences.
 
 ## Step 1 part 2 UI Shell
 
 1.  Adding the UI shell
 
     1. In `main.js` import the UIShell components using `';`
-    2. An example of UIShell usage can be found here in the Web Components Storybook [https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base](https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base)
+    2. An example of UIShell usage can be found here in the Web Components Storybook
+       [https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base](https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base)
     3. Modify `index.html` first wrapping the contents of body with `<main class="main">...</main>`.
     4. Add the classes `<body class="app">` to the body tag.
     5. Then add the following `cds-header` before `main`
@@ -106,9 +105,7 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
        ```html
        <header>
          <cds-header class="g100">
-           <cds-header-name href="/" prefix="IBM"
-             >Carbon Tutorial</cds-header-name
-           >
+           <cds-header-name href="/" prefix="IBM">Carbon Tutorial</cds-header-name>
          </cds-header>
        </header>
        ```
@@ -137,26 +134,26 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
 
        ```html
        <cds-header-nav menu-bar-label="Carbon Tutorial">
-         <cds-header-nav-item href="./repositories.html"
-           >Repositories</cds-header-nav-item
-         >
+         <cds-header-nav-item href="./repositories.html">Repositories</cds-header-nav-item>
        </cds-header-nav>
        ```
 
     2. Next duplicate `index.html` and name it `repositories.html`.
     3. In this new file replace the contents of the `main` tag with the wordS `REPOSITORIES PAGE`.
     4. Give it a try
-    5. Switching between pages might look a little glitchy, this is because it is a genuine page navigation, this is simply how HTML works. When using Web Components inside libraries such as Lit, React, Angular, Vue etc this is resolved by taking control of the routing. We will not investigate further here.
+    5. Switching between pages might look a little glitchy, this is because it is a genuine page navigation, this is
+       simply how HTML works. When using Web Components inside libraries such as Lit, React, Angular, Vue etc this is
+       resolved by taking control of the routing. We will not investigate further here.
 
-4.  Checking responsive behavior (wubdiw narrower than 1080px) you will notice the repositories page disappear from the menu. This goes into a sidebar controlled by a hamburger menu as follows.
+4.  Checking responsive behavior (wubdiw narrower than 1080px) you will notice the repositories page disappear from the
+    menu. This goes into a sidebar controlled by a hamburger menu as follows.
 
     1. Before the `<cds-header-name>` tag add
 
        ```html
        <cds-header-menu-button
          button-label-active="Close menu"
-         button-label-inactive="Open menu"
-       ></cds-header-menu-button>
+         button-label-inactive="Open menu"></cds-header-menu-button>
        ```
 
     2. Then after the closing `</cds-header-nav>` add
@@ -165,19 +162,18 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
        <cds-side-nav
          is-not-persistent
          aria-label="Side navigation"
-         collapse-mode="${SIDE_NAV_COLLAPSE_MODE.RESPONSIVE}"
-       >
+         collapse-mode="${SIDE_NAV_COLLAPSE_MODE.RESPONSIVE}">
          <cds-side-nav-items>
-           <cds-side-nav-link href="./repositories.html">
-             Repositories
-           </cds-side-nav-link>
+           <cds-side-nav-link href="./repositories.html"> Repositories </cds-side-nav-link>
          </cds-side-nav-items>
        </cds-side-nav>
        ```
 
 5.  Next we add global actions.
 
-    1.  Rather than rely on the bundler to load Carbon SVG icons for us or add them inline, which can make our HTML harder to read, first add the following CSS to add refer directly to the icon files (which have been conveniently placed in the `./public` folder).
+    1.  Rather than rely on the bundler to load Carbon SVG icons for us or add them inline, which can make our HTML
+        harder to read, first add the following CSS to add refer directly to the icon files (which have been
+        conveniently placed in the `./public` folder).
 
     Open `styles.scss` and add the following.
 
@@ -201,44 +197,27 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
         ```
 
-    2.  Next we need to add the global actions and related panels to the `index.html` file after the closing `</cds-side-nav>`. The Carbon icons are applied to the slotted icon element using CSS.
+    2.  Next we need to add the global actions and related panels to the `index.html` file after the closing
+        `</cds-side-nav>`. The Carbon icons are applied to the slotted icon element using CSS.
 
         ```html
         <div class="cds--header__global">
-          <cds-header-global-action
-            aria-label="Notifications"
-            class="notification"
-            panel-id="notification-panel"
-          >
+          <cds-header-global-action aria-label="Notifications" class="notification" panel-id="notification-panel">
             <div class="action-icon" slot="icon"></div>
           </cds-header-global-action>
-          <cds-header-global-action
-            aria-label="User Profile"
-            class="user-avatar"
-            panel-id="user-profile-panel"
-          >
+          <cds-header-global-action aria-label="User Profile" class="user-avatar" panel-id="user-profile-panel">
             <div class="action-icon" slot="icon"></div>
           </cds-header-global-action>
-          <cds-header-global-action
-            aria-label="App Switcher"
-            class="app-switcher"
-            panel-id="app-switcher-panel"
-          >
+          <cds-header-global-action aria-label="App Switcher" class="app-switcher" panel-id="app-switcher-panel">
             <div class="action-icon" slot="icon"></div>
           </cds-header-global-action>
-          <cds-header-panel
-            id="notification-panel"
-            aria-label="Notification Panel"
+          <cds-header-panel id="notification-panel" aria-label="Notification Panel"
             >Notification Panel</cds-header-panel
           >
-          <cds-header-panel
-            id="user-profile-panel"
-            aria-label="User profile Panel"
+          <cds-header-panel id="user-profile-panel" aria-label="User profile Panel"
             >User profile Panel</cds-header-panel
           >
-          <cds-header-panel
-            id="app-switcher-panel"
-            aria-label="App switcher Panel"
+          <cds-header-panel id="app-switcher-panel" aria-label="App switcher Panel"
             >App switcher Panel</cds-header-panel
           >
         </div>
@@ -246,7 +225,8 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
 
     3.  Note as web components behave like native components we can add event handlers and interact with them directly.
 
-    The default panel behavior simply toggles the panel when clicked. This can result in multiple panels being open at once. Adding the following to `main.js` changes this behavior by listening for clicks and closing the other panels.
+    The default panel behavior simply toggles the panel when clicked. This can result in multiple panels being open at
+    once. Adding the following to `main.js` changes this behavior by listening for clicks and closing the other panels.
 
         ```js
             const handleGlobalActionClick = (ev) => {
@@ -301,21 +281,15 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
 
           <cds-content-switcher value="system" class="theme-selector">
             <cds-content-switcher-item icon value="light">
-              <div
-                class="theme-selector__icon theme-selector__icon--light"
-              ></div>
+              <div class="theme-selector__icon theme-selector__icon--light"></div>
               <span slot="tooltip-content">Light theme</span>
             </cds-content-switcher-item>
             <cds-content-switcher-item icon value="system">
-              <div
-                class="theme-selector__icon theme-selector__icon--system"
-              ></div>
+              <div class="theme-selector__icon theme-selector__icon--system"></div>
               <span slot="tooltip-content">System theme</span>
             </cds-content-switcher-item>
             <cds-content-switcher-item icon value="dark">
-              <div
-                class="theme-selector__icon theme-selector__icon--dark"
-              ></div>
+              <div class="theme-selector__icon theme-selector__icon--dark"></div>
               <span slot="tooltip-content">Dark theme</span>
             </cds-content-switcher-item>
           </cds-content-switcher>
@@ -387,14 +361,10 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
               bodyEl.classList.remove('g100');
           }
         };
-        document
-          .querySelector('.theme-selector')
-          .addEventListener('cds-content-switcher-selected', handleSwitch);
+        document.querySelector('.theme-selector').addEventListener('cds-content-switcher-selected', handleSwitch);
 
         const handleHeaderCompliment = (ev) => {
-          document
-            .querySelector('header')
-            .classList.toggle('compliment', ev.target.checked);
+          document.querySelector('header').classList.toggle('compliment', ev.target.checked);
         };
         document
           .querySelector('.theme-header__compliment')
@@ -402,7 +372,8 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         ```
 
     7.  In `index.html` replace the `g100` class with `compliment`.
-    8.  Lastly for the theme switcher to work the themes in `styles.scss` in `:root`, `.g10` and `g100` need to handle `.compliment` as follows.
+    8.  Lastly for the theme switcher to work the themes in `styles.scss` in `:root`, `.g10` and `g100` need to handle
+        `.compliment` as follows.
 
         ```scss
         :root {
@@ -443,9 +414,12 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
         ```
 
-7.  One final task before moving on to step 2. Our repositories page has missed out on all of the HTML updates we have been making to the landing page. Simply copy the contents of `index.html` to `repositories.html` and replace `LANDING` with `REPOSITORIES`.
+7.  One final task before moving on to step 2. Our repositories page has missed out on all of the HTML updates we have
+    been making to the landing page. Simply copy the contents of `index.html` to `repositories.html` and replace
+    `LANDING` with `REPOSITORIES`.
 
-NOTE: We could do something better than duplicating our pages. This could be pure Javascript, HTML templates or native Web Components. However, that might distract from the message that no library is required.
+NOTE: We could do something better than duplicating our pages. This could be pure Javascript, HTML templates or native
+Web Components. However, that might distract from the message that no library is required.
 
 ## Step 2
 
@@ -458,48 +432,37 @@ In step 2 we will much of the landing page content and an example table to the r
       ```html
       <div class="page page--landing cds--css-grid cds--css-grid--full-width">
         <div
-          class="page-landing__banner cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
-        >
+          class="page-landing__banner cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
           1
         </div>
-        <div
-          class="page-landing__r2 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
-        >
+        <div class="page-landing__r2 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
           <div class="cds--subgrid cds--subgrid--full-wide">
             <div
-              class="page-landing__tab-content cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-span-7"
-            >
+              class="page-landing__tab-content cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-span-7">
               7/16
             </div>
             <div
-              class="cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-start-9 cds--lg:col-span-8 cds--css-grid-column"
-            >
+              class="cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-start-9 cds--lg:col-span-8 cds--css-grid-column">
               8/16
             </div>
           </div>
         </div>
-        <div
-          class="page-landing__r3 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
-        >
+        <div class="page-landing__r3 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
           <div class="cds--subgrid cds--subgrid--full-wide">
             <div
-              class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
-            >
+              class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
               1/4
             </div>
             <div
-              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
-            >
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
               1/4
             </div>
             <div
-              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
-            >
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
               1/4
             </div>
             <div
-              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
-            >
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
               1/4
             </div>
           </div>
@@ -513,7 +476,11 @@ In step 2 we will much of the landing page content and an example table to the r
       @use '@carbon/styles/scss/grid';
       ```
 
-   3. Now this grid is not a Carbon web component. There are a number of differences between the Carbon React component list and the web component one. It may be that creating a web component equivalent does not add much value, or simply a gap in implementation. Sticking to the non-library approach, the grid classes are written out long hand in this tutorial. We could again write some utility to make this neater, or move it to CSS but are choosing not to introduce custom code here.
+   3. Now this grid is not a Carbon web component. There are a number of differences between the Carbon React component
+      list and the web component one. It may be that creating a web component equivalent does not add much value, or
+      simply a gap in implementation. Sticking to the non-library approach, the grid classes are written out long hand
+      in this tutorial. We could again write some utility to make this neater, or move it to CSS but are choosing not to
+      introduce custom code here.
 
 2. Adding the banner content
 
@@ -546,26 +513,19 @@ In step 2 we will much of the landing page content and an example table to the r
 
       ```html
       <cds-tabs value="about" class="page-landing__tabs">
-        <cds-tab id="tab-about" value="about" target="panel-about"
-          >About</cds-tab
-        >
-        <cds-tab id="tab-design" value="design" target="panel-design"
-          >Design</cds-tab
-        >
-        <cds-tab id="tab-develop" value="develop" target="panel-develop"
-          >Develop</cds-tab
-        >
+        <cds-tab id="tab-about" value="about" target="panel-about">About</cds-tab>
+        <cds-tab id="tab-design" value="design" target="panel-design">Design</cds-tab>
+        <cds-tab id="tab-develop" value="develop" target="panel-develop">Develop</cds-tab>
       </cds-tabs>
       ```
 
    Tab panels take a `target` property which is used to identify the content to be displayed when viewing that tab.
 
-   3. Wrap the subgrid element immediately after the closing `</cds-tabs>` with the following. This is where we will place our first tab panel.
+   3. Wrap the subgrid element immediately after the closing `</cds-tabs>` with the following. This is where we will
+      place our first tab panel.
 
       ```html
-      <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">
-        ... grid element is here
-      </div>
+      <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">... grid element is here</div>
       ```
 
    4. Replace the content of the first column `7/16` with
@@ -573,10 +533,9 @@ In step 2 we will much of the landing page content and an example table to the r
       ```html
       <h3 class="page-landing__subheading">What is Carbon?</h3>
       <p class="page-landing__p">
-        Carbon is IBM’s open-source design system for digital products and
-        experiences. With the IBM Design Language as its foundation, the system
-        consists of working code, design tools and resources, human interface
-        guidelines, and a vibrant community of contributors.
+        Carbon is IBM’s open-source design system for digital products and experiences. With the IBM Design Language as
+        its foundation, the system consists of working code, design tools and resources, human interface guidelines, and
+        a vibrant community of contributors.
       </p>
       <cds-button>Learn more</cds-button>
       ```
@@ -584,13 +543,7 @@ In step 2 we will much of the landing page content and an example table to the r
    5. The second column content `8/16` is replaced with
 
       ```html
-      <img
-        class="page-landing__illo"
-        src="./tab-illo.png"
-        alt="Carbon illustration"
-        width="640"
-        height="498"
-      />
+      <img class="page-landing__illo" src="./tab-illo.png" alt="Carbon illustration" width="640" height="498" />
       ```
 
    6. After the closing `</div>` of `id="panel-about"` we add two further tab panels. This one
@@ -598,13 +551,11 @@ In step 2 we will much of the landing page content and an example table to the r
       ```html
       <div id="panel-design" role="tabpanel" aria-labelledby="tab-design">
         <div class="cds--subgrid cds--subgrid--full-wide">
-          <div
-            class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
-          >
+          <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
             <div class="page-landing__tab-content">
               <p class="page-landing__p">
-                Rapidly build beautiful and accessible experiences. The Carbon
-                kit contains all resources you need to get started.
+                Rapidly build beautiful and accessible experiences. The Carbon kit contains all resources you need to
+                get started.
               </p>
             </div>
           </div>
@@ -617,14 +568,11 @@ In step 2 we will much of the landing page content and an example table to the r
       ```html
       <div id="panel-develop" role="tabpanel" aria-labelledby="tab-develop">
         <div class="cds--subgrid cds--subgrid--full-wide">
-          <div
-            class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
-          >
+          <div class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16">
             <div class="page-landing__tab-content">
               <p class="page-landing__p">
-                Carbon provides components and styles for all. Whether using
-                Vanilla, Web Components, React, or another reactive library, you
-                can build with Carbon.
+                Carbon provides components and styles for all. Whether using Vanilla, Web Components, React, or another
+                reactive library, you can build with Carbon.
               </p>
             </div>
           </div>
@@ -634,27 +582,23 @@ In step 2 we will much of the landing page content and an example table to the r
 
 4. Adding row three content
 
-   1. Here we will replace all four columns entirely with adding some offsets for medium and large column sizes after the first column.
+   1. Here we will replace all four columns entirely with adding some offsets for medium and large column sizes after
+      the first column.
 
    ```html
-   <div
-     class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
-   >
+   <div class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4">
      The principles
    </div>
    <div
-     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-5"
-   >
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-5">
      Carbon is open
    </div>
    <div
-     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-9"
-   >
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-9">
      Carbon is modular
    </div>
    <div
-     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-13"
-   >
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-13">
      Carbon is consistent
    </div>
    ```
@@ -677,7 +621,9 @@ In step 2 we will much of the landing page content and an example table to the r
       .page-landing__banner {
         padding-block: $spacing-05 $spacing-07 * 4;
         background: $layer-01;
-        box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
+        box-shadow:
+          $spacing-06 0 0 $layer-01,
+          -1 * $spacing-06 0 0 $layer-01;
       }
 
       .page-landing__heading {
@@ -741,9 +687,7 @@ In step 2 we will much of the landing page content and an example table to the r
 
    ```html
    <div class="page page--repositories cds--css-grid cds--css-grid--full-width">
-     <div
-       class="repo-page__r1 cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--css-grid-column"
-     >
+     <div class="repo-page__r1 cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--css-grid-column">
        REPOSITORIES PAGE
      </div>
    </div>
@@ -761,12 +705,9 @@ In step 2 we will much of the landing page content and an example table to the r
 
       ```html
       <cds-table expandable>
-        <cds-table-header-title slot="title"
-          >Carbon Repositories</cds-table-header-title
-        >
+        <cds-table-header-title slot="title">Carbon Repositories</cds-table-header-title>
         <cds-table-header-description slot="description"
-          >A collection of public Carbon
-          repositories.</cds-table-header-description
+          >A collection of public Carbon repositories.</cds-table-header-description
         >
         <cds-table-head>
           <cds-table-header-row>
@@ -822,7 +763,8 @@ In step 2 we will much of the landing page content and an example table to the r
    }
    ```
 
-4. With the app running we can see that the repositories page now hosts a table. However, it is not realistic to populate a table this way so we'll refactor to build the table from data.
+4. With the app running we can see that the repositories page now hosts a table. However, it is not realistic to
+   populate a table this way so we'll refactor to build the table from data.
 
    1. In `index.html` remove the contents of the `<cds-table>` tag and return it to `Table body goes here`.
    2. Before the end of the HTML document add the following HTML template.
@@ -837,9 +779,7 @@ In step 2 we will much of the landing page content and an example table to the r
           <cds-table-cell key="stars">456</cds-table-cell>
           <cds-table-cell key="links">Links</cds-table-cell>
         </cds-table-row>
-        <cds-table-expanded-row key="expansion"
-          >Repo description</cds-table-expanded-row
-        >
+        <cds-table-expanded-row key="expansion">Repo description</cds-table-expanded-row>
       </template>
       ```
 
@@ -882,9 +822,7 @@ In step 2 we will much of the landing page content and an example table to the r
 
       ```js
       const updateTable = () => {
-        const tableRowTemplate = document.querySelector(
-          'template#template--table-row',
-        );
+        const tableRowTemplate = document.querySelector('template#template--table-row');
         const tableBody = document.querySelector('cds-table-body');
         if (tableBody && tableRowTemplate) {
           tableBody.innerHTML = '';
@@ -933,7 +871,8 @@ Step 2 is now complete
 
     4. Remove the call to `updateTable()`
 
-    5. In `repositories.html` before the `<cds-table>` add a skeleton table. Skeletons in Carbon are used to indicate loading state.
+    5. In `repositories.html` before the `<cds-table>` add a skeleton table. Skeletons in Carbon are used to indicate
+       loading state.
 
        ```html
        <cds-table-skeleton></cds-table-skeleton>
@@ -944,12 +883,9 @@ Step 2 is now complete
        ```html
        <template id="template--table">
          <cds-table expandable>
-           <cds-table-header-title slot="title"
-             >Carbon Repositories</cds-table-header-title
-           >
+           <cds-table-header-title slot="title">Carbon Repositories</cds-table-header-title>
            <cds-table-header-description slot="description"
-             >A collection of public Carbon
-             repositories.</cds-table-header-description
+             >A collection of public Carbon repositories.</cds-table-header-description
            >
            <cds-table-head>
              <cds-table-header-row>
@@ -971,15 +907,10 @@ Step 2 is now complete
        ```js
        const replaceSkeleton = () => {
          const tableSkeleton = document.querySelector('cds-table-skeleton');
-         const tableTemplate = document.querySelector(
-           'template#template--table',
-         );
+         const tableTemplate = document.querySelector('template#template--table');
 
          if (tableSkeleton && tableTemplate) {
-           tableSkeleton.replaceWith(
-             tableTemplate.content.cloneNode(true),
-             null,
-           );
+           tableSkeleton.replaceWith(tableTemplate.content.cloneNode(true), null);
            updatedTable();
          }
        };
@@ -1054,7 +985,8 @@ Step 2 is now complete
        }
        ```
 
-    4. As with standard HTML tags it is possible to simply insert Carbon Web Components as innerHTML using a string. Just a little bit of CSS is needed to present this as per our tutorial design.
+    4. As with standard HTML tags it is possible to simply insert Carbon Web Components as innerHTML using a string.
+       Just a little bit of CSS is needed to present this as per our tutorial design.
 
     Open `styles.scss` and add the following.
 
@@ -1097,11 +1029,7 @@ Step 2 is now complete
     3.  In `repositories.html` at the bottom of `template--table` add
 
         ```html
-        <cds-pagination
-          backward-text="Previous page"
-          forward-text="Next page"
-          itemsPerPageText="Items per page"
-        >
+        <cds-pagination backward-text="Previous page" forward-text="Next page" itemsPerPageText="Items per page">
           <cds-select-item value="10">10</cds-select-item>
           <cds-select-item value="20">20</cds-select-item>
           <cds-select-item value="30">30</cds-select-item>
@@ -1148,9 +1076,7 @@ Step 2 is now complete
     1.  Replace `The principles` with
 
         ```html
-        <div
-          class="cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--xlg:col-span-3 cds--css-grid-column"
-        >
+        <div class="cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--xlg:col-span-3 cds--css-grid-column">
           <h3 class="info-section__heading">The Principles</h3>
         </div>
         ```
@@ -1158,8 +1084,7 @@ Step 2 is now complete
     2.  In the next three columns add the class `info-card` to the column settings.
         ```html
         <div
-          class="info-card cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-5 cds--xlg:col-span-4 cds--css-grid-column"
-        ></div>
+          class="info-card cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-5 cds--xlg:col-span-4 cds--css-grid-column"></div>
         ```
     3.  Replace `Carbon is open` with
 
@@ -1167,9 +1092,8 @@ Step 2 is now complete
         <div>
           <h4 class="info-card__heading">Carbon is <strong>Open</strong></h4>
           <p class="info-card__body">
-            It's a distributed effort, guided by the principles of the
-            open-source movement. Carbon's users are also it's makers, and
-            everyone is encouraged to contribute.
+            It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also
+            it's makers, and everyone is encouraged to contribute.
           </p>
         </div>
         <div class="info-card__pictogram advocate-pictogram"></div>
@@ -1181,9 +1105,8 @@ Step 2 is now complete
         <div>
           <h4 class="info-card__heading">Carbon is <strong>Modular</strong></h4>
           <p class="info-card__body">
-            Carbon's modularity ensures maximum flexibility in execution. It's
-            components are designed to work seamlessly with each other, in
-            whichever combination suits the needs of the user.
+            Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work
+            seamlessly with each other, in whichever combination suits the needs of the user.
           </p>
         </div>
         <div class="info-card__pictogram accelerating-pictogram"></div>
@@ -1193,13 +1116,10 @@ Step 2 is now complete
 
         ```html
         <div>
-          <h4 class="info-card__heading">
-            Carbon is <strong>Consistent</strong>
-          </h4>
+          <h4 class="info-card__heading">Carbon is <strong>Consistent</strong></h4>
           <p class="info-card__body">
-            Based on the comprehensive IBM Design Language, every element and
-            component of Carbon was designed from the ground up to work
-            elegantly together to ensure consistent, cohesive user experiences.
+            Based on the comprehensive IBM Design Language, every element and component of Carbon was designed from the
+            ground up to work elegantly together to ensure consistent, cohesive user experiences.
           </p>
         </div>
         <div class="info-card__pictogram globe-pictogram"></div>
@@ -1252,9 +1172,12 @@ Step 2 is now complete
 
 ## Step 5
 
-While the Carbon component styles are encapsulated in the components there we have written some SCSS ourselves it would great if we could check we are applying Carbon as expected.
+While the Carbon component styles are encapsulated in the components there we have written some SCSS ourselves it would
+great if we could check we are applying Carbon as expected.
 
-Linters, spell checkers, code formatters are all really useful tools to ensure code consistency and guard against potential errors. Having them run within your IDE and as part of your integration process really is the best and cheapest time to avoid some issues.
+Linters, spell checkers, code formatters are all really useful tools to ensure code consistency and guard against
+potential errors. Having them run within your IDE and as part of your integration process really is the best and
+cheapest time to avoid some issues.
 
 1. Add some linting of our styles
 
@@ -1270,7 +1193,11 @@ Linters, spell checkers, code formatters are all really useful tools to ensure c
       "lint:style": "pnpm stylelint '**/*.scss'",
       ```
 
-   3. In the root folder create a file called `.styelintrc.json` and add the following settings. The [recommended config](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/config/recommended.js) for the plugin checks layout, motion, theme and type usage against expectations. For more details take a look at the packages [README.md](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/README.md)
+   3. In the root folder create a file called `.styelintrc.json` and add the following settings. The
+      [recommended config](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/config/recommended.js)
+      for the plugin checks layout, motion, theme and type usage against expectations. For more details take a look at
+      the packages
+      [README.md](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/README.md)
 
       ```json
       {
@@ -1282,13 +1209,15 @@ Linters, spell checkers, code formatters are all really useful tools to ensure c
       }
       ```
 
-   4. At the command line you can now run the script `lint:style`. This should highlight just the one issue with the setting of `font-weight` to 600.
+   4. At the command line you can now run the script `lint:style`. This should highlight just the one issue with the
+      setting of `font-weight` to 600.
 
       ```
       "lint:style": "pnpm stylelint 'style.scss'"
       ```
 
-   5. If you open the file you will see that `600` is marked with a wiggly underline. Hovering over it you will see a popup explanation.
+   5. If you open the file you will see that `600` is marked with a wiggly underline. Hovering over it you will see a
+      popup explanation.
 
    ```
    Expected carbon type token, mixin or function for "font-weight" found "600". (carbon/type-use)Stylelintcarbon/type-use
@@ -1296,21 +1225,15 @@ Linters, spell checkers, code formatters are all really useful tools to ensure c
 
    6. Change `600` to `font-weight('semibold')`
 
-2. Out of scope for this tutorial it is recommended that you use a more extensive rule set for stylelint. This can help keep code consistent and auto fix many potential issues.
+2. Out of scope for this tutorial it is recommended that you use a more extensive rule set for stylelint. This can help
+   keep code consistent and auto fix many potential issues.
 
    1. Change the `.stylelint.json` file to
 
       ```json
       {
-        "extends": [
-          "stylelint-config-standard-scss",
-          "stylelint-plugin-carbon-tokens/config/recommended"
-        ],
-        "plugins": [
-          "@double-great/stylelint-a11y",
-          "stylelint-use-logical-spec",
-          "stylelint-plugin-carbon-tokens"
-        ],
+        "extends": ["stylelint-config-standard-scss", "stylelint-plugin-carbon-tokens/config/recommended"],
+        "plugins": ["@double-great/stylelint-a11y", "stylelint-use-logical-spec", "stylelint-plugin-carbon-tokens"],
         "reportNeedlessDisables": true,
         "reportInvalidScopeDisables": true,
         "reportDescriptionlessDisables": true,
@@ -1344,4 +1267,7 @@ Linters, spell checkers, code formatters are all really useful tools to ensure c
    3. Re-run the script `lint:style` or view the style file to see additional concerns.
    4. Run again adding the `--fix` option and the issues are addressed.
 
-3. In addition to linting styles it is recommended that you also check your script and spelling. Configuration and packages are included here for `eslint`, `prettier` and `cspell`.
+3. In addition to linting styles it is recommended that you also check your script and spelling. Configuration and
+   packages are included here for `eslint`, `prettier` and `cspell`.
+
+NOTE: If you are using a reactive library then there may well be configurations better suited to your purposes.

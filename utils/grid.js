@@ -1,10 +1,4 @@
-export const gridClasses = ({
-  class: className = '',
-  fullWidth = false,
-  sub = false,
-  wide = false,
-  ...rest
-} = {}) => {
+export const gridClasses = ({ class: className = '', fullWidth = false, sub = false, wide = false } = {}) => {
   const classes = [];
 
   if (className) {

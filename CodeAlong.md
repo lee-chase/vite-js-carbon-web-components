@@ -49,10 +49,7 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
     1. Replace the contents of the `<body>` tag with
 
        ```html
-       <div>
-         Hello Carbon! Well, not quite yet. This is the starting point for the
-         Carbon React tutorial.
-       </div>
+       <div>Hello Carbon! Well, not quite yet. This is the starting point for the Carbon React tutorial.</div>
        ```
 
 5.  A Carbon button in `index.html`
@@ -123,7 +120,8 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
 7.  Next we add UI shell
 
     1. In `main.js` import the UIShell components using `import '@carbon/web-components/es/components/ui-shell/index';`
-    2. An example of UIShell usage can be found here in the Web Components Storybook [https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base](https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base)
+    2. An example of UIShell usage can be found here in the Web Components Storybook
+       [https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base](https://web-components.carbondesignsystem.com/?path=/docs/components-ui-shell--header-base)
     3. Modify `index.html` first wrapping the contents of body with `<main class="main">...</main>`.
     4. Add the classes `<body class="app g10">` to the body tag.
     5. Then add the following `cds-header` before `main`
@@ -131,9 +129,7 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
        ```html
        <header>
          <cds-header class="g100">
-           <cds-header-name href="/" prefix="IBM"
-             >Carbon Tutorial</cds-header-name
-           >
+           <cds-header-name href="/" prefix="IBM">Carbon Tutorial</cds-header-name>
          </cds-header>
        </header>
        ```
@@ -168,9 +164,7 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
 
        ```html
        <cds-header-nav menu-bar-label="Carbon Tutorial">
-         <cds-header-nav-item href="./repositories.html"
-           >Repositories</cds-header-nav-item
-         >
+         <cds-header-nav-item href="./repositories.html">Repositories</cds-header-nav-item>
        </cds-header-nav>
        ```
 
@@ -178,7 +172,9 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
     3. Replace the contents of the `main` tag with the wordS `REPOSITORIES PAGE`.
     4. Give it a try
 
-10. To complete step 1 of the tutorial, and before a `Lit`tle refactor we add the global actions to the header. 1. While we could copy the SVG files directly into our source we will instead create a simple Icon components in `main.js` utilizing icon functions exported with Carbon Web Components.
+10. To complete step 1 of the tutorial, and before a `Lit`tle refactor we add the global actions to the header. 1. While
+    we could copy the SVG files directly into our source we will instead create a simple Icon components in `main.js`
+    utilizing icon functions exported with Carbon Web Components.
 
     1.  First import the following icons
 
@@ -197,36 +193,25 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
           };
 
           render() {
-            return (
-              { Notification20, UserAvatar20, Switcher20 }[this.icon] ??
-              Notification20
-            )();
+            return ({ Notification20, UserAvatar20, Switcher20 }[this.icon] ?? Notification20)();
           }
         }
         customElements.define('my-icon', MyIcon);
         ```
 
     3.  NOTE: It may not be the most efficient strategy to include large numbers of icons in one component.
-    4.  In both`index.html`and`repositories.html` add the following to include the global actions. Note that at the time of writing `<cds-global-header>` did not appear to exist as a component.
+    4.  In both`index.html`and`repositories.html` add the following to include the global actions. Note that at the time
+        of writing `<cds-global-header>` did not appear to exist as a component.
 
         ```html
         <div class="cds--header__global">
-          <cds-header-global-action
-            aria-label="Notifications"
-            class="action-icons"
-          >
+          <cds-header-global-action aria-label="Notifications" class="action-icons">
             <my-icon slot="icon" icon="Notification20" />
           </cds-header-global-action>
-          <cds-header-global-action
-            aria-label="User Avatar"
-            class="action-icons"
-          >
+          <cds-header-global-action aria-label="User Avatar" class="action-icons">
             <my-icon slot="icon" icon="UserAvatar20" />
           </cds-header-global-action>
-          <cds-header-global-action
-            aria-label="App Switcher"
-            class="action-icons"
-          >
+          <cds-header-global-action aria-label="App Switcher" class="action-icons">
             <my-icon slot="icon" icon="Switcher20" />
           </cds-header-global-action>
         </div>
@@ -234,7 +219,9 @@ Using your favorite package installer or `yarn` as we will use here. Create a Vi
 
 ## Step 1 plus - A `Lit`tle refactor
 
-At this point, reviewing `index.html`, we can see that it is possible to use Web Components, Carbon and our own, directly in HTML as the work like native elements. This means that if we wanted we could use them inside React, Angular, Vue etc.
+At this point, reviewing `index.html`, we can see that it is possible to use Web Components, Carbon and our own,
+directly in HTML as the work like native elements. This means that if we wanted we could use them inside React, Angular,
+Vue etc.
 
 Working is relative, one glitch of note, is that we are using two pages with an obvious re-render between the two.
 
@@ -317,7 +304,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
    NOTE: Lit, like other reactive packages uses familiar javascript methods to render content from data.
 
-   4. This small refactor, while not necessary does serve to show that Lit can be used to construct HTML from data. It also removes he current need for the `my-icon` component, but we'll keep it for reference and possible use later.
+   4. This small refactor, while not necessary does serve to show that Lit can be used to construct HTML from data. It
+      also removes he current need for the `my-icon` component, but we'll keep it for reference and possible use later.
 
 4. Creating and using `page-landing` and `page-repositories` components.
 
@@ -374,7 +362,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       };
       ```
 
-   6. Note that the increment function has changed from `document.querySelector` to `this.shadowRoot.querySelector` to access the components DOM.
+   6. Note that the increment function has changed from `document.querySelector` to `this.shadowRoot.querySelector` to
+      access the components DOM.
    7. Add both components to `./components/index.js`;
    8. In `index.html` replace the contents of `<main>` with
 
@@ -382,7 +371,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       <page-landing></page-landing>
       ```
 
-   9. Now our App is sort of working but the Repositories page is not correct. This is most obvious if we now delete `repositories.html`.
+   9. Now our App is sort of working but the Repositories page is not correct. This is most obvious if we now delete
+      `repositories.html`.
 
 5. At this point `main.js` can be reduced down to this as it is serving only to register components and import styles.
 
@@ -431,7 +421,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
       ```
 
    4. Import `tutorial-app` into `./components/index.js`
-   5. If you are looking at the app, we appear to have broken the styling. This is because we have just moved our App into the shadow DOM.
+   5. If you are looking at the app, we appear to have broken the styling. This is because we have just moved our App
+      into the shadow DOM.
 
       1. Create `./components/tutorial-app.scss` and copy the contents of `style.scss`
       2. Reduce `style.css` to just the reset line.
@@ -461,7 +452,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
          }
          ```
 
-      4. Import this file into `./components/tutorial-app.js` using this line. A different approach may be required when not using Vite.
+      4. Import this file into `./components/tutorial-app.js` using this line. A different approach may be required when
+         not using Vite.
 
          ```js
          import styles from './tutorial-app.scss?inline';
@@ -480,7 +472,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
    6. Finally we need to fix our routing.
 
-      1. Inside the render function of `tutorial-app.js` add the following to read the path and select the appropriate main content.
+      1. Inside the render function of `tutorial-app.js` add the following to read the path and select the appropriate
+         main content.
 
          ```js
          const path = window.location.pathname;
@@ -501,7 +494,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
          ```
 
       2. Then replace `<page-landing></page-landing>` in the template literal with `${page}`.
-      3. Note that in `tutorial-header.js` we can now replace `repositories.html` with `repositories` making our URL a little neater.
+      3. Note that in `tutorial-header.js` we can now replace `repositories.html` with `repositories` making our URL a
+         little neater.
       4. Delete `repositories.html` otherwise it interferes
 
 7. Hopefully at this point you have a working application that looks something like this.
@@ -516,7 +510,8 @@ Rather than import one of these packages, let's continue and refactor using `Lit
 
 ## Step 2
 
-Now that we have our app using the UI Shell, it’s time to build a few static pages. In this step, we’ll become comfortable with the Carbon grid and various Carbon components.
+Now that we have our app using the UI Shell, it’s time to build a few static pages. In this step, we’ll become
+comfortable with the Carbon grid and various Carbon components.
 
 1.  Add a sample grid
 
@@ -524,62 +519,37 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
 
        ```html
        <div class="${gridClasses({ class: 'page--landing', fullWidth: true })}">
-         <div
-           class="${colClasses({ class: 'page-landing__banner', sizes: { sm: 4, md: 8, lg:  16 } } ) }"
-         >
-           1
-         </div>
-         <div
-           class="${colClasses({ class: 'page-landing__r2', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
-         >
+         <div class="${colClasses({ class: 'page-landing__banner', sizes: { sm: 4, md: 8, lg:  16 } } ) }">1</div>
+         <div class="${colClasses({ class: 'page-landing__r2', sizes: { sm: 4, md: 8, lg: 16 } } ) }">
            <div class="${gridClasses({ sub: true, wide: true } ) }">
-             <div
-               class="${colClasses({ class: 'page-landing__tab-content', sizes: { sm: 4, md: 4, lg: 7 } } ) }"
-             >
+             <div class="${colClasses({ class: 'page-landing__tab-content', sizes: { sm: 4, md: 4, lg: 7 } } ) }">
                7/16
              </div>
-             <div class="${colClasses({ sizes: { sm:4, md: 4, lg: 7 } } ) }">
-               8/16
-             </div>
+             <div class="${colClasses({ sizes: { sm:4, md: 4, lg: 7 } } ) }">8/16</div>
            </div>
          </div>
-         <div
-           class="${colClasses({ class: 'page-landing__r3', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
-         >
+         <div class="${colClasses({ class: 'page-landing__r3', sizes: { sm: 4, md: 8, lg: 16 } } ) }">
            <div class="${gridClasses({ sub: true, wide: true })}">
-             <div
-               class="${colClasses({ class: 'page-landing__label', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
-             >
-               1/4
-             </div>
-             <div
-               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
-             >
-               1/4
-             </div>
-             <div
-               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
-             >
-               1/4
-             </div>
-             <div
-               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
-             >
-               1/4
-             </div>
+             <div class="${colClasses({ class: 'page-landing__label', sizes: { sm: 4, md: 2, lg: 4 } } ) }">1/4</div>
+             <div class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }">1/4</div>
+             <div class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }">1/4</div>
+             <div class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }">1/4</div>
            </div>
          </div>
        </div>
        ```
 
-    2. The eagle eyed amongst you will notice that this is not using Carbon Web Components. While feature parity in Carbon Web Components is improving all the time, there are some features not yet available. Grid is the most notable gap at this time.
+    2. The eagle eyed amongst you will notice that this is not using Carbon Web Components. While feature parity in
+       Carbon Web Components is improving all the time, there are some features not yet available. Grid is the most
+       notable gap at this time.
     3. Then import for the utility functions `colClasses` and `gridClasses`.
 
        ```js
        import { colClasses, gridClasses } from '../utils/grid';
        ```
 
-    4. The page should now run but is missing the required grid styling. Create `./components/page-landing.scss` and paste the following into it.
+    4. The page should now run but is missing the required grid styling. Create `./components/page-landing.scss` and
+       paste the following into it.
 
        ```scss
        @use '@carbon/styles/scss/grid';
@@ -595,7 +565,8 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        }
        ```
 
-    5. Import the style file into `./components/page-landing.js` and add the styles just before the end of the class as before.
+    5. Import the style file into `./components/page-landing.js` and add the styles just before the end of the class as
+       before.
 
        ```js
        import styles from './page-landing.scss';
@@ -631,19 +602,14 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        <h1 class="page-landing__heading">Design &amp; build with Carbon</h1>
        ```
 
-    3. In the second column element `class: 'page-landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
+    3. In the second column element `class: 'page-landing__r2'` before the sub grid which will contain our tab panels we
+       place the tabs.
 
        ```html
        <cds-tabs value="about" class="page-landing__tabs">
-         <cds-tab id="tab-about" value="about" target="panel-about"
-           >About</cds-tab
-         >
-         <cds-tab id="tab-design" value="design" target="panel-design"
-           >Design</cds-tab
-         >
-         <cds-tab id="tab-develop" value="develop" target="panel-develop"
-           >Develop</cds-tab
-         >
+         <cds-tab id="tab-about" value="about" target="panel-about">About</cds-tab>
+         <cds-tab id="tab-design" value="design" target="panel-design">Design</cds-tab>
+         <cds-tab id="tab-develop" value="develop" target="panel-develop">Develop</cds-tab>
        </cds-tabs>
        ```
 
@@ -652,9 +618,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        1. First wrap the grid element immediately after `</cds-tabs>` with our tab panel.
 
           ```html
-          <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">
-            ... grid element is here
-          </div>
+          <div id="panel-about" role="tabpanel" aria-labelledby="tab-about">... grid element is here</div>
           ```
 
        2. Then replace the contents of the contained columns with.
@@ -662,10 +626,9 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
           ```html
           <h3 class="page-landing__subheading">What is Carbon?</h3>
           <p class="page-landing__p">
-            Carbon is IBM’s open-source design system for digital products and
-            experiences. With the IBM Design Language as its foundation, the
-            system consists of working code, design tools and resources, human
-            interface guidelines, and a vibrant community of contributors.
+            Carbon is IBM’s open-source design system for digital products and experiences. With the IBM Design Language
+            as its foundation, the system consists of working code, design tools and resources, human interface
+            guidelines, and a vibrant community of contributors.
           </p>
           <cds-button>Learn more</cds-button>
           ```
@@ -673,13 +636,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        3. And
 
           ```html
-          <img
-            class="page-landing__illo"
-            src="./tab-illo.png"
-            alt="Carbon illustration"
-            width="640"
-            height="498"
-          />
+          <img class="page-landing__illo" src="./tab-illo.png" alt="Carbon illustration" width="640" height="498" />
           ```
 
        4. After the first tab panel we need to add two further panels `Design`.
@@ -690,17 +647,15 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
               class="${gridClasses({
                 sub: true,
                 wide: true,
-              })}"
-            >
+              })}">
               <div
                 class="${colClasses({
                   class: 'page-landing__tab-content',
                   sizes: { sm: 4, md: 8, lg: 16 },
-                })}"
-              >
+                })}">
                 <p class="page-landing__p">
-                  Rapidly build beautiful and accessible experiences. The Carbon
-                  kit contains all resources you need to get started.
+                  Rapidly build beautiful and accessible experiences. The Carbon kit contains all resources you need to
+                  get started.
                 </p>
               </div>
             </div>
@@ -715,25 +670,23 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
               class="${gridClasses({
                sub: true,
                wide: true,
-             })}"
-            >
+             })}">
               <div
                 class="${colClasses({
                  class: 'page-landing__tab-content',
                  sizes: { sm: 4, md: 8, lg: 16 },
-               })}"
-              >
+               })}">
                 <p class="page-landing__p">
-                  Carbon provides components and styles for all. Whether using
-                  Vanilla, Web Components, React, or another reactive library,
-                  you can build with Carbon.
+                  Carbon provides components and styles for all. Whether using Vanilla, Web Components, React, or
+                  another reactive library, you can build with Carbon.
                 </p>
               </div>
             </div>
           </div>
           ```
 
-    5. At this point we have something functional, but in need of a little styling. Head to `./contents/page-landing.scss`.
+    5. At this point we have something functional, but in need of a little styling. Head to
+       `./contents/page-landing.scss`.
 
        1. Tidy up by adding Carbon theme and spacing imports.
 
@@ -755,7 +708,9 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        .page-landing__banner {
          padding: $spacing-05 0 $spacing-07 * 4;
          background: $layer-01;
-         box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
+         box-shadow:
+           $spacing-06 0 0 $layer-01,
+           -1 * $spacing-06 0 0 $layer-01;
        }
 
        .page-landing__heading {
@@ -802,8 +757,10 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
 
     6. The final row of our grid needs populating.
 
-       1. Replace each of the `1/4` with `The principles`, `Carbon is open`, `Carbon is modular`, `Carbon is consistent`.
-       2. Next we need to adjust the column sizes as we want the contents to wrap on a medium size. The 2nd, 3rd and 4th columns should use the following.
+       1. Replace each of the `1/4` with `The principles`, `Carbon is open`, `Carbon is modular`,
+          `Carbon is consistent`.
+       2. Next we need to adjust the column sizes as we want the contents to wrap on a medium size. The 2nd, 3rd and 4th
+          columns should use the following.
 
           ```js
             sizes: {
@@ -829,8 +786,10 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
               }
           ```
 
-       3. The medium offset forces us to specify an offset at the large size. If you give this a try in the browser you should see these columns wrap when the screen reaches medium size.
-       4. To finish up our landing page we need to add a little more to `./components/page-landing.scss` inside the `:host` definition.
+       3. The medium offset forces us to specify an offset at the large size. If you give this a try in the browser you
+          should see these columns wrap when the screen reaches medium size.
+       4. To finish up our landing page we need to add a little more to `./components/page-landing.scss` inside the
+          `:host` definition.
 
           ```scss
           .page-landing__r3 {
@@ -838,8 +797,9 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
             padding: $spacing-09 0;
             box-sizing: border-box;
             background: $layer-01;
-            box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0
-                $layer-01;
+            box-shadow:
+              $spacing-06 0 0 $layer-01,
+              -1 * $spacing-06 0 0 $layer-01;
           }
 
           .page-landing__label {
@@ -862,19 +822,13 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        import '@carbon/web-components/es/components/data-table/index.js';
        ```
 
-    2. In `./components/page-repositories.js` we will be rendering the content from data and using the utilities previously defined. Before the class declaration add the following.
+    2. In `./components/page-repositories.js` we will be rendering the content from data and using the utilities
+       previously defined. Before the class declaration add the following.
 
        ```js
        import { colClasses, gridClasses } from '../utils/grid';
 
-       const headings = [
-         'Name',
-         'Create',
-         'Updated',
-         'Open Issues',
-         'Stars',
-         'Links',
-       ];
+       const headings = ['Name', 'Create', 'Updated', 'Open Issues', 'Stars', 'Links'];
        const data = [
          {
            name: 'Repo 1',
@@ -909,15 +863,12 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
     3. Next replace the existing render with
 
        ```html
-       <div
-         class="${gridClasses({ class: 'page--repositories', fullWidth: true })}"
-       >
+       <div class="${gridClasses({ class: 'page--repositories', fullWidth: true })}">
          <div
            class="${colClasses({
              class: 'page-repositories__table',
              sizes: { sm: 4, md: 8, lg: 16 },
-           })}"
-         >
+           })}">
            REPOSITORIES PAGE component
          </div>
        </div>
@@ -927,17 +878,13 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
 
        ```html
        <cds-table expandable>
-         <cds-table-header-title slot="title"
-           >Carbon Repositories</cds-table-header-title
-         >
+         <cds-table-header-title slot="title">Carbon Repositories</cds-table-header-title>
          <cds-table-header-description slot="description"
-           >A collection of public Carbon
-           repositories.</cds-table-header-description
+           >A collection of public Carbon repositories.</cds-table-header-description
          >
          <cds-table-head>
            <cds-table-header-row>
-             ${headings.map( (heading) =>
-             html`<cds-table-header-cell>${heading}</cds-table-header-cell>`, )}
+             ${headings.map( (heading) => html`<cds-table-header-cell>${heading}</cds-table-header-cell>`, )}
            </cds-table-header-row>
          </cds-table-head>
          <cds-table-body>Table body goes here</cds-table-body>
@@ -955,7 +902,8 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        ><cds-table-expanded-row>${row.expansion}</cds-table-expanded-row>`, )}
        ```
 
-    6. Next we need to add a little bit of styling, by creating and using `./components/page-repositories.scss`. Feel free to explore and understand the following CSS.
+    6. Next we need to add a little bit of styling, by creating and using `./components/page-repositories.scss`. Feel
+       free to explore and understand the following CSS.
 
        ```scss
        @use '@carbon/styles/scss/grid';
@@ -1035,7 +983,8 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
       ```
 
    3. Import `gridClasses` from `./utils/grid.js`
-   4. Replace the contents of the render function with the following. Which takes the properties supplied and applies them to the contents of the component.
+   4. Replace the contents of the render function with the following. Which takes the properties supplied and applies
+      them to the contents of the component.
 
       ```js
       const classes = gridClasses(this).join(' ');
@@ -1098,7 +1047,8 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
       ```
 
    3. Import `colClasses` from `./utils/grid.js`.
-   4. Then replace the render function with the following. This adds the column classes to the containing tag. This is to enable it to work with the CSS Grid correctly.
+   4. Then replace the render function with the following. This adds the column classes to the containing tag. This is
+      to enable it to work with the CSS Grid correctly.
 
       ```js
       const classes = colClasses(this);
@@ -1137,15 +1087,11 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
    3. Replace the column divs with use of my-col with
 
       ```html
-      <my-col
-        class="page-repositories__table"
-        .sizes="${{ sm: 4, md: 8, lg: 16 }}"
-      >
-        ...
-      </my-col>
+      <my-col class="page-repositories__table" .sizes="${{ sm: 4, md: 8, lg: 16 }}"> ... </my-col>
       ```
 
-6. A small adjustment to `./components/page-repositories.scss` removes the `.cds--css-grid` selector and adds the following to the `.page--repositories` selector.
+6. A small adjustment to `./components/page-repositories.scss` removes the `.cds--css-grid` selector and adds the
+   following to the `.page--repositories` selector.
 
    ```scss
    padding: $spacing-06 0;
@@ -1160,22 +1106,17 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
       1. For example
 
       ```html
-      <div
-        class="${gridClasses({ class: 'page--landing', fullWidth: true })}"
-      ></div>
+      <div class="${gridClasses({ class: 'page--landing', fullWidth: true })}"></div>
       ```
 
       becomes
 
       ```html
-      <my-grid
-        class="page--landing"
-        fullWidth
-        shadowStyle="grid-template-rows: auto 1fr auto"
-      ></my-grid>
+      <my-grid class="page--landing" fullWidth shadowStyle="grid-template-rows: auto 1fr auto"></my-grid>
       ```
 
-      NOTE: The outer grid is the only grid where we pass `shadowStyle` this is used to size the three rows vertically. This can't be done from outside of the location the CSS grid is applied.
+      NOTE: The outer grid is the only grid where we pass `shadowStyle` this is used to size the three rows vertically.
+      This can't be done from outside of the location the CSS grid is applied.
 
       NOTE 2: Boolean parameters like `fullWidth` do not need a value to be passed.
 
@@ -1203,7 +1144,8 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
       <my-col class="xyz" .size="${obj}"> ... </my-col>
       ```
 
-   4. It may take more than one attempt to make sure you match each opening and closing div successfully. Note only three divs should remain.
+   4. It may take more than one attempt to make sure you match each opening and closing div successfully. Note only
+      three divs should remain.
 
 8. In `./components/page-landing.scss` you can remove
 
@@ -1315,7 +1257,8 @@ yarn add @octokit/core
         }
       ```
 
-   4. Add this function to fetch the data. The set requestUpdate nudges Lit to re-render as replacing `this.data` is not reactive.
+   4. Add this function to fetch the data. The set requestUpdate nudges Lit to re-render as replacing `this.data` is not
+      reactive.
 
       ```js
           async fetchData() {
@@ -1354,7 +1297,8 @@ yarn add @octokit/core
       }
       ```
 
-   6. Making use of `this.loading` to render a table skeleton by wrapping the existing `cds-table` render with the following.
+   6. Making use of `this.loading` to render a table skeleton by wrapping the existing `cds-table` render with the
+      following.
 
       ```js
         ${this.loading
@@ -1420,8 +1364,7 @@ yarn add @octokit/core
         forward-text="Next page"
         itemsPerPageText="Items per page"
         @cds-pagination-changed-current="${this.handlePagesChange}"
-        @cds-page-sizes-select-changed="${this.handlePageSizeChange}"
-      >
+        @cds-page-sizes-select-changed="${this.handlePageSizeChange}">
         <cds-select-item value="10">10</cds-select-item>
         <cds-select-item value="20">20</cds-select-item>
         <cds-select-item value="30">30</cds-select-item>
@@ -1495,7 +1438,8 @@ yarn add @octokit/core
       import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
       ```
 
-      NOTE: As per other `unsafe` imports this refers to allowing others to inject into your application. You should always take care to prevent that, in this tutorial it is not a concern.
+      NOTE: As per other `unsafe` imports this refers to allowing others to inject into your application. You should
+      always take care to prevent that, in this tutorial it is not a concern.
 
    2. Add a constructor that reads the SVGs.
 
@@ -1511,14 +1455,14 @@ yarn add @octokit/core
 
       ```
 
-   3. Next change the columns for `page-landing__r3` to cope with the new info cards. Replacing each of the `md: ...` values with `md: 6,`
+   3. Next change the columns for `page-landing__r3` to cope with the new info cards. Replacing each of the `md: ...`
+      values with `md: 6,`
    4. Carbon is open card
 
       ```html
       <info-card headingPart1="Carbon is" headingPart2="Open">
-        It's a distributed effort, guided by the principles of the open-source
-        movement. Carbon's users are also it's makers, and everyone is
-        encouraged to contribute."
+        It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also it's
+        makers, and everyone is encouraged to contribute."
 
         <div slot="icon">${this.advocate}</div>
       </info-card>
@@ -1528,9 +1472,8 @@ yarn add @octokit/core
 
       ```html
       <info-card headingPart1="Carbon is" headingPart2="Modular">
-        Carbon's modularity ensures maximum flexibility in execution. It's
-        components are designed to work seamlessly with each other, in whichever
-        combination suits the needs of the user.
+        Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work seamlessly
+        with each other, in whichever combination suits the needs of the user.
 
         <div slot="icon">${this.accelerating}</div>
       </info-card>
@@ -1540,9 +1483,8 @@ yarn add @octokit/core
 
       ```html
       <info-card headingPart1="Carbon is" headingPart2="Consistent">
-        Based on the comprehensive IBM Design Language, every element and
-        component of Carbon was designed from the ground up to work elegantly
-        together to ensure consistent, cohesive user experiences.
+        Based on the comprehensive IBM Design Language, every element and component of Carbon was designed from the
+        ground up to work elegantly together to ensure consistent, cohesive user experiences.
 
         <div slot="icon">${this.globe}</div>
       </info-card>
@@ -1552,7 +1494,8 @@ yarn add @octokit/core
 
 4. Add `info-card` styling.
 
-   1. Create `./components/info-card.scss` and add the following SCSS to style our component and ensure it behaves responsively. There should be nothing unexpected in this styling.
+   1. Create `./components/info-card.scss` and add the following SCSS to style our component and ensure it behaves
+      responsively. There should be nothing unexpected in this styling.
 
       ```scss
       @use '@carbon/styles/scss/spacing' as *;
