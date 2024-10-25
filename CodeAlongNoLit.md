@@ -2,21 +2,21 @@
 
 ## Step 1
 
-Using your favorite package installer or `yarn` as we will use here. Create a Vite app with Vanilla Javascript.
+Using your favorite package installer or `pnpm` as we will use here. Create a Vite app with Vanilla Javascript.
 
 [Vite getting started](https://vite.dev/guide/#scaffolding-your-first-vite-project)
 
 1.  Check it runs
-    1. yarn dev
+    1. pnpm dev
     2. Stop it.
 2.  Add SASS.
-    1. Install SASS `yarn sass`
+    1. Install SASS `pnpm sass`
     2. Rename `style.css` to `style.scss` and rerun.
     3. Update `main.js` to import the scss file.
     4. Check it runs.
 3.  Add Carbon
 
-    1. `yarn add @carbon/web-components @carbon/styles @carbon/icons`
+    1. `pnpm add @carbon/web-components @carbon/styles @carbon/icons`
     2. In `main.js`
 
        1. Import the Carbon button component.
@@ -607,10 +607,12 @@ In step 2 we will much of the landing page content and an example table to the r
           <div
             class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
           >
-            <p class="page--landing__p">
-              Rapidly build beautiful and accessible experiences. The Carbon kit
-              contains all resources you need to get started.
-            </p>
+            <div class="page--landing__tab-content">
+              <p class="page--landing__p">
+                Rapidly build beautiful and accessible experiences. The Carbon
+                kit contains all resources you need to get started.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -624,11 +626,13 @@ In step 2 we will much of the landing page content and an example table to the r
           <div
             class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
           >
-            <p class="page--landing__p">
-              Carbon provides components and styles for all. Whether using
-              Vanilla, Web Components, React, or another reactive library, you
-              can build with Carbon.
-            </p>
+            <div class="page--landing__tab-content">
+              <p class="page--landing__p">
+                Carbon provides components and styles for all. Whether using
+                Vanilla, Web Components, React, or another reactive library, you
+                can build with Carbon.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -709,6 +713,10 @@ In step 2 we will much of the landing page content and an example table to the r
 
       .page--landing__tabs {
         margin: -1 * $spacing-08 0 $spacing-08;
+      }
+
+      .page--landing__tab-content {
+        padding-block: $spacing-06;
       }
 
       .page--landing__subheading {
@@ -912,7 +920,7 @@ Step 2 is now complete
     1. Add `octokit` to the dependencies.
 
     ```sh
-    yarn add @octokit/core
+    pnpm add @octokit/core
     ```
 
     2. Import Octokit into `main.js` and create a new instance.
@@ -1107,3 +1115,148 @@ Step 2 is now complete
           <cds-select-item value="50">50</cds-select-item>
         </cds-pagination>
         ```
+
+## Step 4
+
+1.  Add dependencies for `@carbon/pictograms` with `yarn @carbon/pictograms`
+2.  Copy the pictograms we will use to the public folder
+
+    ```
+    cp node_modules/@carbon/pictograms/svg/accelerating-transformation.svg ./public
+    cp node_modules/@carbon/pictograms/svg/advocate.svg ./public
+    cp node_modules/@carbon/pictograms/svg/globe.svg ./public
+    ```
+
+3.  Open `style.scss` and create masks in our SCSS as we did with the icons.
+
+    ```scss
+    .info-card__pictogram {
+      width: $spacing-10;
+      height: $spacing-10;
+      background-color: $text-primary;
+    }
+
+    .accelerating-pictogram {
+      -webkit-mask: url(./accelerating-transformation.svg) no-repeat center;
+      mask: url(./accelerating-transformation.svg) no-repeat center;
+    }
+
+    .advocate-pictogram {
+      -webkit-mask: url(./advocate.svg) no-repeat center;
+      mask: url(./advocate.svg) no-repeat center;
+    }
+
+    .globe-pictogram {
+      -webkit-mask: url(./globe.svg) no-repeat center;
+      mask: url(./globe.svg) no-repeat center;
+    }
+    ```
+
+4.  In `index.html` we will update the principles and add the info cards.
+
+    1.  Replace `The principles` with
+
+        ```html
+        <div
+          class="cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16 cds--xlg:col-span-3 cds--css-grid-column"
+        >
+          <h3 class="info-section__heading">The Principles</h3>
+        </div>
+        ```
+
+    2.  In the next three columns add the class `info-card` to the column settings.
+        ```html
+        <div
+          class="info-card cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-5 cds--xlg:col-span-4 cds--css-grid-column"
+        ></div>
+        ```
+    3.  Replace `Carbon is open` with
+
+        ```html
+        <div>
+          <h4 class="info-card__heading">Carbon is <strong>Open</strong></h4>
+          <p class="info-card__body">
+            It's a distributed effort, guided by the principles of the
+            open-source movement. Carbon's users are also it's makers, and
+            everyone is encouraged to contribute.
+          </p>
+        </div>
+        <div class="info-card__pictogram advocate-pictogram"></div>
+        ```
+
+    4.  Replace `Carbon is modular` with
+
+        ```html
+        <div>
+          <h4 class="info-card__heading">Carbon is <strong>Modular</strong></h4>
+          <p class="info-card__body">
+            Carbon's modularity ensures maximum flexibility in execution. It's
+            components are designed to work seamlessly with each other, in
+            whichever combination suits the needs of the user.
+          </p>
+        </div>
+        <div class="info-card__pictogram accelerating-pictogram"></div>
+        ```
+
+    5.  Replace `Carbon is consistent` with
+
+        ```html
+        <div>
+          <h4 class="info-card__heading">
+            Carbon is <strong>Consistent</strong>
+          </h4>
+          <p class="info-card__body">
+            Based on the comprehensive IBM Design Language, every element and
+            component of Carbon was designed from the ground up to work
+            elegantly together to ensure consistent, cohesive user experiences.
+          </p>
+        </div>
+        <div class="info-card__pictogram globe-pictogram"></div>
+        ```
+
+5.  Last task is to add the styling to `style.scss` for the info cards.
+
+    ```scss
+    .info-card {
+      display: flex;
+      height: 300px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-inline: $spacing-05;
+      border-left: 1px solid $border-subtle;
+
+      @include breakpoint-down(xlg) {
+        &:nth-of-type(2) {
+          border-left: none;
+          padding-left: 0;
+        }
+      }
+
+      @include breakpoint-down(lg) {
+        flex-direction: row-reverse;
+        border-left: none;
+        padding-inline: 0;
+        gap: $spacing-07;
+        padding-top: $spacing-10;
+        height: initial;
+
+        &:nth-of-type(2) {
+          padding-top: 0;
+        }
+      }
+    }
+
+    .info-card__heading {
+      @include type-style('heading-03');
+
+      margin-top: 0;
+    }
+
+    .info-card__body {
+      @include type-style('body-long-01');
+
+      margin-top: $spacing-06;
+    }
+    ```
+
+## Step 5
