@@ -525,16 +525,16 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        ```html
        <div class="${gridClasses({ class: 'page--landing', fullWidth: true })}">
          <div
-           class="${colClasses({ class: 'page--landing__banner', sizes: { sm: 4, md: 8, lg:  16 } } ) }"
+           class="${colClasses({ class: 'page-landing__banner', sizes: { sm: 4, md: 8, lg:  16 } } ) }"
          >
            1
          </div>
          <div
-           class="${colClasses({ class: 'page--landing__r2', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
+           class="${colClasses({ class: 'page-landing__r2', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
          >
            <div class="${gridClasses({ sub: true, wide: true } ) }">
              <div
-               class="${colClasses({ class: 'page--landing__tab-content', sizes: { sm: 4, md: 4, lg: 7 } } ) }"
+               class="${colClasses({ class: 'page-landing__tab-content', sizes: { sm: 4, md: 4, lg: 7 } } ) }"
              >
                7/16
              </div>
@@ -544,26 +544,26 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
            </div>
          </div>
          <div
-           class="${colClasses({ class: 'page--landing__r3', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
+           class="${colClasses({ class: 'page-landing__r3', sizes: { sm: 4, md: 8, lg: 16 } } ) }"
          >
            <div class="${gridClasses({ sub: true, wide: true })}">
              <div
-               class="${colClasses({ class: 'page--landing__label', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+               class="${colClasses({ class: 'page-landing__label', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
              >
                1/4
              </div>
              <div
-               class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
              >
                1/4
              </div>
              <div
-               class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
              >
                1/4
              </div>
              <div
-               class="${colClasses({ class: 'page--landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
+               class="${colClasses({ class: 'page-landing__title', sizes: { sm: 4, md: 2, lg: 4 } } ) }"
              >
                1/4
              </div>
@@ -620,7 +620,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        import '@carbon/web-components/es/components/tabs/index';
        ```
 
-    2. Inside the first column element `class: 'page--landing__banner'` add the following breadcrumb and heading.
+    2. Inside the first column element `class: 'page-landing__banner'` add the following breadcrumb and heading.
 
        ```html
        <cds-breadcrumb noTrailingSlash aria-label="Page navigation">
@@ -628,13 +628,13 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
            <a href="/">Getting started</a>
          </cds-breadcrumb-item>
        </cds-breadcrumb>
-       <h1 class="page--landing__heading">Design &amp; build with Carbon</h1>
+       <h1 class="page-landing__heading">Design &amp; build with Carbon</h1>
        ```
 
-    3. In the second column element `class: 'page--landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
+    3. In the second column element `class: 'page-landing__r2'` before the sub grid which will contain our tab panels we place the tabs.
 
        ```html
-       <cds-tabs value="about" class="page--landing__tabs">
+       <cds-tabs value="about" class="page-landing__tabs">
          <cds-tab id="tab-about" value="about" target="panel-about"
            >About</cds-tab
          >
@@ -660,8 +660,8 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        2. Then replace the contents of the contained columns with.
 
           ```html
-          <h3 class="page--landing__subheading">What is Carbon?</h3>
-          <p class="page--landing__p">
+          <h3 class="page-landing__subheading">What is Carbon?</h3>
+          <p class="page-landing__p">
             Carbon is IBM’s open-source design system for digital products and
             experiences. With the IBM Design Language as its foundation, the
             system consists of working code, design tools and resources, human
@@ -674,7 +674,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
 
           ```html
           <img
-            class="page--landing__illo"
+            class="page-landing__illo"
             src="./tab-illo.png"
             alt="Carbon illustration"
             width="640"
@@ -694,11 +694,11 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
             >
               <div
                 class="${colClasses({
-                  class: 'page--landing__tab-content',
+                  class: 'page-landing__tab-content',
                   sizes: { sm: 4, md: 8, lg: 16 },
                 })}"
               >
-                <p class="page--landing__p">
+                <p class="page-landing__p">
                   Rapidly build beautiful and accessible experiences. The Carbon
                   kit contains all resources you need to get started.
                 </p>
@@ -719,11 +719,11 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
             >
               <div
                 class="${colClasses({
-                 class: 'page--landing__tab-content',
+                 class: 'page-landing__tab-content',
                  sizes: { sm: 4, md: 8, lg: 16 },
                })}"
               >
-                <p class="page--landing__p">
+                <p class="page-landing__p">
                   Carbon provides components and styles for all. Whether using
                   Vanilla, Web Components, React, or another reactive library,
                   you can build with Carbon.
@@ -752,13 +752,13 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
          overflow-y: auto;
        }
 
-       .page--landing__banner {
+       .page-landing__banner {
          padding: $spacing-05 0 $spacing-07 * 4;
          background: $layer-01;
          box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
        }
 
-       .page--landing__heading {
+       .page-landing__heading {
          @include type-style('productive-heading-05');
 
          margin: 0;
@@ -768,14 +768,14 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        4. Style the tabs and content in the same place with
 
           ```scss
-          .page--landing__illo {
+          .page-landing__illo {
             max-width: 100%;
             float: inline-end;
             height: auto;
           }
 
           @include breakpoint-down(md) {
-            .page--landing__illo {
+            .page-landing__illo {
               max-width: 528px;
               width: 100%;
               height: 100%;
@@ -783,17 +783,17 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
             }
           }
 
-          .page--landing__tabs {
-            margin: -1 * $spacing-08 0 $spacing-08;
+          .page-landing__tabs {
+            margin: (-1 * $spacing-08) 0 $spacing-08;
           }
 
-          .page--landing__subheading {
+          .page-landing__subheading {
             @include type-style('productive-heading-03');
 
             font-weight: 600;
           }
 
-          .page--landing__p {
+          .page-landing__p {
             @include type-style('productive-heading-03');
             margin-top: $spacing-06;
             margin-bottom: $spacing-08;
@@ -833,7 +833,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        4. To finish up our landing page we need to add a little more to `./components/page-landing.scss` inside the `:host` definition.
 
           ```scss
-          .page--landing__r3 {
+          .page-landing__r3 {
             height: 100%;
             padding: $spacing-09 0;
             box-sizing: border-box;
@@ -842,7 +842,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
                 $layer-01;
           }
 
-          .page--landing__label {
+          .page-landing__label {
             @include type-style('productive-heading-01');
 
             @include breakpoint-down(md) {
@@ -914,7 +914,7 @@ Now that we have our app using the UI Shell, it’s time to build a few static p
        >
          <div
            class="${colClasses({
-             class: 'page--repositories__table',
+             class: 'page-repositories__table',
              sizes: { sm: 4, md: 8, lg: 16 },
            })}"
          >
@@ -1138,7 +1138,7 @@ Before moving on we'll refactor and tidy away the grid and column HTML into Lit 
 
       ```html
       <my-col
-        class="page--repositories__table"
+        class="page-repositories__table"
         .sizes="${{ sm: 4, md: 8, lg: 16 }}"
       >
         ...
@@ -1511,7 +1511,7 @@ yarn add @octokit/core
 
       ```
 
-   3. Next change the columns for `page--landing__r3` to cope with the new info cards. Replacing each of the `md: ...` values with `md: 6,`
+   3. Next change the columns for `page-landing__r3` to cope with the new info cards. Replacing each of the `md: ...` values with `md: 6,`
    4. Carbon is open card
 
       ```html

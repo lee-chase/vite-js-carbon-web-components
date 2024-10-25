@@ -189,18 +189,15 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
 
         .notification .action-icon {
-            -webkit-mask: url(./notification.svg) no-repeat center;
-            mask: url(./notification.svg) no-repeat center;
+            mask: url("./notification.svg") no-repeat center;
         }
 
         .user-avatar .action-icon {
-            -webkit-mask: url(./user--avatar.svg) no-repeat center;
-            mask: url(./user--avatar.svg) no-repeat center;
+            mask: url("./user--avatar.svg") no-repeat center;
         }
 
         .app-switcher .action-icon {
-            -webkit-mask: url(./switcher.svg) no-repeat center;
-            mask: url(./switcher.svg) no-repeat center;
+            mask: url("./switcher.svg") no-repeat center;
         }
         ```
 
@@ -359,18 +356,15 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
 
         .theme-selector__icon--light {
-          -webkit-mask: url(./sun.svg) no-repeat center;
-          mask: url(./sun.svg) no-repeat center;
+          mask: url('./sun.svg') no-repeat center;
         }
 
         .theme-selector__icon--system {
-          -webkit-mask: url(./brightness-contrast.svg) no-repeat center;
-          mask: url(./brightness-contrast.svg) no-repeat center;
+          mask: url('./brightness-contrast.svg') no-repeat center;
         }
 
         .theme-selector__icon--dark {
-          -webkit-mask: url(./moon.svg) no-repeat center;
-          mask: url(./moon.svg) no-repeat center;
+          mask: url('./moon.svg') no-repeat center;
         }
         ```
 
@@ -464,16 +458,16 @@ In step 2 we will much of the landing page content and an example table to the r
       ```html
       <div class="page page--landing cds--css-grid cds--css-grid--full-width">
         <div
-          class="page--landing__banner cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
+          class="page-landing__banner cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
         >
           1
         </div>
         <div
-          class="page--landing__r2 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
+          class="page-landing__r2 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
         >
           <div class="cds--subgrid cds--subgrid--full-wide">
             <div
-              class="page--landing__tab-content cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-span-7"
+              class="page-landing__tab-content cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-4 cds--lg:col-span-7"
             >
               7/16
             </div>
@@ -485,26 +479,26 @@ In step 2 we will much of the landing page content and an example table to the r
           </div>
         </div>
         <div
-          class="page--landing__r3 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
+          class="page-landing__r3 cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
         >
           <div class="cds--subgrid cds--subgrid--full-wide">
             <div
-              class="page--landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
+              class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
             >
               1/4
             </div>
             <div
-              class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
             >
               1/4
             </div>
             <div
-              class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
             >
               1/4
             </div>
             <div
-              class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
+              class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
             >
               1/4
             </div>
@@ -529,7 +523,7 @@ In step 2 we will much of the landing page content and an example table to the r
       import '@carbon/web-components/es/components/breadcrumb/index';
       ```
 
-   2. In `index.html` replace the content of `page--landing__banner` with
+   2. In `index.html` replace the content of `page-landing__banner` with
 
       ```html
       <cds-breadcrumb noTrailingSlash aria-label="Page navigation">
@@ -537,7 +531,7 @@ In step 2 we will much of the landing page content and an example table to the r
           <a href="/">Getting started</a>
         </cds-breadcrumb-item>
       </cds-breadcrumb>
-      <h1 class="page--landing__heading">Design &amp; build with Carbon</h1>
+      <h1 class="page-landing__heading">Design &amp; build with Carbon</h1>
       ```
 
 3. Adding row two content
@@ -548,10 +542,10 @@ In step 2 we will much of the landing page content and an example table to the r
       import '@carbon/web-components/es/components/tabs/index';
       ```
 
-   2. Next in `index.html` inside `page--landing__r2` and before the sub `cds--subgrid`.
+   2. Next in `index.html` inside `page-landing__r2` and before the sub `cds--subgrid`.
 
       ```html
-      <cds-tabs value="about" class="page--landing__tabs">
+      <cds-tabs value="about" class="page-landing__tabs">
         <cds-tab id="tab-about" value="about" target="panel-about"
           >About</cds-tab
         >
@@ -577,8 +571,8 @@ In step 2 we will much of the landing page content and an example table to the r
    4. Replace the content of the first column `7/16` with
 
       ```html
-      <h3 class="page--landing__subheading">What is Carbon?</h3>
-      <p class="page--landing__p">
+      <h3 class="page-landing__subheading">What is Carbon?</h3>
+      <p class="page-landing__p">
         Carbon is IBM’s open-source design system for digital products and
         experiences. With the IBM Design Language as its foundation, the system
         consists of working code, design tools and resources, human interface
@@ -591,7 +585,7 @@ In step 2 we will much of the landing page content and an example table to the r
 
       ```html
       <img
-        class="page--landing__illo"
+        class="page-landing__illo"
         src="./tab-illo.png"
         alt="Carbon illustration"
         width="640"
@@ -607,8 +601,8 @@ In step 2 we will much of the landing page content and an example table to the r
           <div
             class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
           >
-            <div class="page--landing__tab-content">
-              <p class="page--landing__p">
+            <div class="page-landing__tab-content">
+              <p class="page-landing__p">
                 Rapidly build beautiful and accessible experiences. The Carbon
                 kit contains all resources you need to get started.
               </p>
@@ -626,8 +620,8 @@ In step 2 we will much of the landing page content and an example table to the r
           <div
             class="cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-8 cds--lg:col-span-16"
           >
-            <div class="page--landing__tab-content">
-              <p class="page--landing__p">
+            <div class="page-landing__tab-content">
+              <p class="page-landing__p">
                 Carbon provides components and styles for all. Whether using
                 Vanilla, Web Components, React, or another reactive library, you
                 can build with Carbon.
@@ -644,22 +638,22 @@ In step 2 we will much of the landing page content and an example table to the r
 
    ```html
    <div
-     class="page--landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
+     class="page-landing__label cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-2 cds--lg:col-span-4"
    >
      The principles
    </div>
    <div
-     class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-5"
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-5"
    >
      Carbon is open
    </div>
    <div
-     class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-9"
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-9"
    >
      Carbon is modular
    </div>
    <div
-     class="page--landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-13"
+     class="page-landing__title cds--css-grid-column cds--sm:col-span-4 cds--md:col-span-6 cds--md:col-start-3 cds--lg:col-span-4 cds--lg:col-start-13"
    >
      Carbon is consistent
    </div>
@@ -680,13 +674,13 @@ In step 2 we will much of the landing page content and an example table to the r
         }
       }
 
-      .page--landing__banner {
+      .page-landing__banner {
         padding-block: $spacing-05 $spacing-07 * 4;
         background: $layer-01;
         box-shadow: $spacing-06 0 0 $layer-01, -1 * $spacing-06 0 0 $layer-01;
       }
 
-      .page--landing__heading {
+      .page-landing__heading {
         @include type-style('productive-heading-05');
 
         margin: 0;
@@ -696,14 +690,14 @@ In step 2 we will much of the landing page content and an example table to the r
    2. Row 2
 
       ```scss
-      .page--landing__illo {
+      .page-landing__illo {
         max-width: 100%;
         float: inline-end;
         height: auto;
       }
 
       @include breakpoint-down(md) {
-        .page--landing__illo {
+        .page-landing__illo {
           max-width: 528px;
           width: 100%;
           height: 100%;
@@ -711,21 +705,21 @@ In step 2 we will much of the landing page content and an example table to the r
         }
       }
 
-      .page--landing__tabs {
-        margin: -1 * $spacing-08 0 $spacing-08;
+      .page-landing__tabs {
+        margin: (-1 * $spacing-08) 0 $spacing-08;
       }
 
-      .page--landing__tab-content {
+      .page-landing__tab-content {
         padding-block: $spacing-06;
       }
 
-      .page--landing__subheading {
+      .page-landing__subheading {
         @include type-style('productive-heading-03');
 
         font-weight: 600;
       }
 
-      .page--landing__p {
+      .page-landing__p {
         @include type-style('productive-heading-03');
         margin-top: $spacing-06;
         margin-bottom: $spacing-08;
@@ -735,7 +729,7 @@ In step 2 we will much of the landing page content and an example table to the r
    3. Row 3
 
       ```scss
-      .page--landing__r3 {
+      .page-landing__r3 {
         padding-block: $spacing-09;
         background: $layer-01;
       }
@@ -1137,17 +1131,14 @@ Step 2 is now complete
     }
 
     .accelerating-pictogram {
-      -webkit-mask: url(./accelerating-transformation.svg) no-repeat center;
       mask: url(./accelerating-transformation.svg) no-repeat center;
     }
 
     .advocate-pictogram {
-      -webkit-mask: url(./advocate.svg) no-repeat center;
       mask: url(./advocate.svg) no-repeat center;
     }
 
     .globe-pictogram {
-      -webkit-mask: url(./globe.svg) no-repeat center;
       mask: url(./globe.svg) no-repeat center;
     }
     ```
@@ -1263,18 +1254,20 @@ Step 2 is now complete
 
 While the Carbon component styles are encapsulated in the components there we have written some SCSS ourselves it would great if we could check we are applying Carbon as expected.
 
+Linters, spell checkers, code formatters are all really useful tools to ensure code consistency and guard against potential errors. Having them run within your IDE and as part of your integration process really is the best and cheapest time to avoid some issues.
+
 1. Add some linting of our styles
 
    1. Install `stylelint` and the plugin `stylelint-plugin-carbon-tokens`
 
       ```
-      pnpm add stylelint stylelint-plugin-carbon-tokens
+      pnpm add -D stylelint stylelint-plugin-carbon-tokens
       ```
 
    2. In package.json add the following script.
 
       ```
-      "lint:style": "yarn stylelint '**/*.scss'",
+      "lint:style": "pnpm stylelint '**/*.scss'",
       ```
 
    3. In the root folder create a file called `.styelintrc.json` and add the following settings. The [recommended config](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/config/recommended.js) for the plugin checks layout, motion, theme and type usage against expectations. For more details take a look at the packages [README.md](https://github.com/carbon-design-system/stylelint-plugin-carbon-tokens/blob/main/README.md)
@@ -1292,7 +1285,7 @@ While the Carbon component styles are encapsulated in the components there we ha
    4. At the command line you can now run the script `lint:style`. This should highlight just the one issue with the setting of `font-weight` to 600.
 
       ```
-      pnpn lint:style
+      "lint:style": "pnpm stylelint 'style.scss'"
       ```
 
    5. If you open the file you will see that `600` is marked with a wiggly underline. Hovering over it you will see a popup explanation.
@@ -1303,4 +1296,52 @@ While the Carbon component styles are encapsulated in the components there we ha
 
    6. Change `600` to `font-weight('semibold')`
 
-2.
+2. Out of scope for this tutorial it is recommended that you use a more extensive rule set for stylelint. This can help keep code consistent and auto fix many potential issues.
+
+   1. Change the `.stylelint.json` file to
+
+      ```json
+      {
+        "extends": [
+          "stylelint-config-standard-scss",
+          "stylelint-plugin-carbon-tokens/config/recommended"
+        ],
+        "plugins": [
+          "@double-great/stylelint-a11y",
+          "stylelint-use-logical-spec",
+          "stylelint-plugin-carbon-tokens"
+        ],
+        "reportNeedlessDisables": true,
+        "reportInvalidScopeDisables": true,
+        "reportDescriptionlessDisables": true,
+        "rules": {
+          "a11y/media-prefers-reduced-motion": true,
+          "a11y/no-outline-none": true,
+          "a11y/selector-pseudo-class-focus": true,
+          "max-nesting-depth": [
+            3,
+            {
+              "ignoreAtRules": ["if", "else", "each", "include", "mixin"]
+            }
+          ],
+          "liberty/use-logical-spec": true,
+          "selector-class-pattern": [
+            "^[a-z]([-]?[a-z0-9]+)*(__[a-z0-9]([-]?[a-z0-9]+)*)?(--[a-z0-9]([-]?[a-z0-9]+)*)?$",
+            {
+              "message": "should match Harry Roberts'' style BEM block[__element][--modifier]"
+            }
+          ]
+        }
+      }
+      ```
+
+   2. Add the additional packages.
+
+      ```
+      pnpm add -D @double-great/stylelint-a11y stylelint-config-standard-scss stylelint-use-logica stylelint-use-logical-spec
+      ```
+
+   3. Re-run the script `lint:style` or view the style file to see additional concerns.
+   4. Run again adding the `--fix` option and the issues are addressed.
+
+3. In addition to linting styles it is recommended that you also check your script and spelling. Configuration and packages are included here for `eslint`, `prettier` and `cspell`.
