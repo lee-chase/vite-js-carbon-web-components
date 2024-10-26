@@ -1272,4 +1272,4 @@ cheapest time to avoid some issues.
 
 NOTE: If you are using a reactive library then there may well be configurations better suited to your purposes.
 
-4. Deploying to gh-pages
+4. Deploying to `gh-pages`
