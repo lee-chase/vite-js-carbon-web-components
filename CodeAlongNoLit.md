@@ -185,15 +185,15 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
 
         .notification .action-icon {
-            mask: url("./notification.svg") no-repeat center;
+            mask: url('/notification.svg') no-repeat center;
         }
 
         .user-avatar .action-icon {
-            mask: url("./user--avatar.svg") no-repeat center;
+            mask: url('/user--avatar.svg') no-repeat center;
         }
 
         .app-switcher .action-icon {
-            mask: url("./switcher.svg") no-repeat center;
+            mask: url('/switcher.svg') no-repeat center;
         }
         ```
 
@@ -330,15 +330,15 @@ Using your favorite package installer or `pnpm` as we will use here. Create a Vi
         }
 
         .theme-selector__icon--light {
-          mask: url('./sun.svg') no-repeat center;
+          mask: url('/sun.svg') no-repeat center;
         }
 
         .theme-selector__icon--system {
-          mask: url('./brightness-contrast.svg') no-repeat center;
+          mask: url('/brightness-contrast.svg') no-repeat center;
         }
 
         .theme-selector__icon--dark {
-          mask: url('./moon.svg') no-repeat center;
+          mask: url('/moon.svg') no-repeat center;
         }
         ```
 
