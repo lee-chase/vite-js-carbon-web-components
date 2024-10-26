@@ -1225,8 +1225,8 @@ cheapest time to avoid some issues.
 
    6. Change `600` to `font-weight('semibold')`
 
-2. Out of scope for this tutorial it is recommended that you use a more extensive rule set for stylelint. This can help
-   keep code consistent and auto fix many potential issues.
+2. Out of scope, but included from [Step 1](#step-1), for this tutorial it is recommended that you use a more extensive
+   rule set for stylelint. This can help keep code consistent and auto fix many potential issues.
 
    1. Change the `.stylelint.json` file to
 
@@ -1267,7 +1267,9 @@ cheapest time to avoid some issues.
    3. Re-run the script `lint:style` or view the style file to see additional concerns.
    4. Run again adding the `--fix` option and the issues are addressed.
 
-3. In addition to linting styles it is recommended that you also check your script and spelling. Configuration and
-   packages are included here for `eslint`, `prettier` and `cspell`.
+3. In addition to linting styles, also included in this tutorial, it is recommended that you also check your script and
+   spelling. Configuration and packages are included here for `eslint`, `prettier` and `cspell`.
 
 NOTE: If you are using a reactive library then there may well be configurations better suited to your purposes.
+
+4. Deploying to gh-pages

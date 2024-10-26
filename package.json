@@ -1,5 +1,6 @@
 {
-  "name": "vite-js",
+  "name": "vite-js-carbon-web-components",
+  "homepage": "https://github.com/lee-chase/vite-js-carbon-web-components",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
     "lint:es": "eslint . main.js --report-unused-disable-directives --max-warnings 0",
     "lint:format": "prettier ./**/*.{js,jsx,ts,tsx,md,mdx,scss} --write --ignore-unknown --no-error-on-unmatched-pattern --log-level warn",
     "lint:spell": "cspell lint --quiet \"**/*.{js,css,scss,md}\"",
@@ -20,6 +22,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "gh-pages": "^6.2.0",
     "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "stylelint": "^16.10.0",
