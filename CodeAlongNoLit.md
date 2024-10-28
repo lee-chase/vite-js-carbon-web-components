@@ -1273,3 +1273,64 @@ cheapest time to avoid some issues.
 NOTE: If you are using a reactive library then there may well be configurations better suited to your purposes.
 
 4. Deploying to `gh-pages`
+
+5. Lastly we've been using `main.js` to load components from `node_modules` but Web Components do not require is to do
+   this. All of Carbon Web Components is published via a CDN see
+   [the documentation for further details](https://web-components.carbondesignsystem.com/?path=/docs/introduction-carbon-cdn-style-helpers--overview).
+
+   1. Remove from `main.js`
+
+      ```js
+      import '@carbon/web-components/es/components/button/button.js';
+      import '@carbon/web-components/es/components/ui-shell/index';
+      import '@carbon/web-components/es/components/checkbox/index';
+      import '@carbon/web-components/es/components/content-switcher/index';
+      import '@carbon/web-components/es/components/breadcrumb/index';
+      import '@carbon/web-components/es/components/tabs/index';
+      import '@carbon/web-components/es/components/data-table/index.js';
+      import '@carbon/web-components/es/components/link/index';
+      import '@carbon/web-components/es/components/pagination/index';
+      ```
+
+   2. In `index.html` add
+
+   ```html
+   <script
+     type="module"
+     src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/button.min.js"></script>
+   <script
+     type="module"
+     src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/ui-shell.min.js"></script>
+   <script
+     type="module"
+     src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/checkbox.min.js"></script>
+   <script
+     type="module"
+     src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
+   <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/tabs.min.js"></script>
+   ```
+
+   3. In `repositories.html` add
+
+      ```html
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/ui-shell.min.js"></script>
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/checkbox.min.js"></script>
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/content-switcher.min.js"></script>
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/data-table.min.js"></script>
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/link.min.js"></script>
+      <script
+        type="module"
+        src="https://1.www.s81c.com/common/carbon/web-components/version/v2.16.0/pagination.min.js"></script>
+      ```
+
+6. If you run the application again you are running with no dependency on `node_modules/@carbon/web-components`.
