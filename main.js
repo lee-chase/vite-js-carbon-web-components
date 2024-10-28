@@ -90,8 +90,7 @@ const updatedTable = () => {
 const handlePageChangeCurrent = ({ detail }) => {
   firstRowIndex = (detail.page - 1) * detail.pageSize;
   // Unfortunately not working - seems to lose the expanding row
-  // messing with the columns.
-  // TODO: https://github.com/carbon-design-system/carbon/issues/ - raise an issue
+  // https://github.com/carbon-design-system/carbon/issues/#17894
 
   updatedTable();
 };
