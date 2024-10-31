@@ -1,6 +1,5 @@
 import { LitElement, html, unsafeCSS } from 'lit';
-
-import styles from './my-col.scss?inline';
+// import styles from './my-col.scss?inline';
 import { colClasses } from '../utils/grid';
 
 export class MyCol extends LitElement {
@@ -15,17 +14,27 @@ export class MyCol extends LitElement {
     this.sizes = this.sizes ?? undefined;
   }
 
-  render() {
-    const classes = colClasses(this);
+  // render() {
+  //   const classes = colClasses(this);
 
-    // Add the classes to the container so they see the grid
-    classes.forEach((val) => this.classList.add(val));
+  //   // Add the classes to the container so they see the grid
+  //   classes.forEach((val) => this.classList.add(val));
 
-    return html`<slot></slot>`;
+  //   return html`<slot></slot>`;
+  // }
+
+  // static get styles() {
+  //   return [unsafeCSS(styles)];
+  // }
+
+  connectedCallback() {
+    const classes = colClasses(this).join(' ');
+    this.setAttribute('class', classes);
   }
 
-  static get styles() {
-    return [unsafeCSS(styles)];
-  }
+  // renderRoot() {
+  //   // not needed
+  //   return this;
+  // }
 }
 customElements.define('my-col', MyCol);
